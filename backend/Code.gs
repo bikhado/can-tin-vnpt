@@ -167,6 +167,8 @@ function doPost(e) {
         return handleSaveMenu(body);
       case 'override':
         return handleOverride(body);
+      case 'delete_registration':
+        return handleDeleteRegistration(body);
       default:
         return jsonResponse({ status: 'error', message: 'Unknown action: ' + action });
     }
@@ -385,6 +387,29 @@ function handleOverride(body) {
   const value = body.value === 'true' ? 'true' : 'false';
   setSetting('override_cutoff', value);
   return jsonResponse({ status: 'ok', message: 'Override cutoff set to ' + value });
+}
+
+// POST /delete_registration
+function handleDeleteRegistration(body) {
+  var date = body.date;
+  var employee = body.employee;
+
+  if (!date || !employee) {
+    return jsonResponse({ status: 'error', message: 'Date and employee are required' });
+  }
+
+  var sheet = getSheet(SHEET_REGISTRATIONS);
+  var data = sheet.getDataRange().getValues();
+
+  for (var i = data.length - 1; i >= 1; i--) {
+    var rowDate = formatDateStr(data[i][0]);
+    if (rowDate === date && data[i][1] === employee) {
+      sheet.deleteRow(i + 1);
+      return jsonResponse({ status: 'ok', message: 'Registration deleted' });
+    }
+  }
+
+  return jsonResponse({ status: 'error', message: 'Registration not found' });
 }
 
 // DEBUG: inspect raw menu data

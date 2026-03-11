@@ -319,6 +319,7 @@ async function onSelectionChange() {
                 isEditing = true;
                 existingAlert.classList.remove('hidden');
                 btnText.textContent = 'CẬP NHẬT';
+                document.getElementById('btnCancel').style.display = 'inline-block';
 
                 // Set checkboxes
                 const cbBreakfast = document.getElementById('cbBreakfast');
@@ -339,6 +340,7 @@ async function onSelectionChange() {
                 isEditing = false;
                 existingAlert.classList.add('hidden');
                 btnText.textContent = 'ĐĂNG KÝ';
+                document.getElementById('btnCancel').style.display = 'none';
 
                 // Reset checkboxes
                 document.getElementById('cbBreakfast').checked = false;
@@ -407,5 +409,48 @@ async function submitRegistration() {
         btn.disabled = false;
         btnText.classList.remove('hidden');
         spinner.classList.add('hidden');
+    }
+}
+
+async function cancelRegistration() {
+    const employee = document.getElementById('employeeSelect').value;
+    const dateStr = document.getElementById('dateInput').value;
+
+    if (!employee || !dateStr) return;
+
+    if (!confirm(`Bạn có chắc muốn hủy đăng ký suất ăn ngày ${formatDateVN(dateStr)} không?`)) {
+        return;
+    }
+
+    const btn = document.getElementById('btnCancel');
+    const btnText = document.getElementById('btnCancelText');
+    const spinner = document.getElementById('btnCancelSpinner');
+
+    btn.disabled = true;
+    btnText.classList.add('hidden');
+    spinner.classList.remove('hidden');
+    showLoading('🗑️', 'Chờ chút bạn iưuưu~\nĐang hủy đăng ký...');
+
+    try {
+        const result = await apiPost('delete_registration', {
+            date: dateStr,
+            employee: employee
+        });
+
+        if (result.status === 'ok') {
+            showToast('Đã hủy đăng ký thành công!', 'success');
+            // Refresh state
+            onSelectionChange();
+        } else {
+            showToast(result.message || 'Lỗi khi hủy đăng ký', 'error');
+        }
+    } catch (e) {
+        console.error('Failed to cancel registration:', e);
+        showToast('Lỗi kết nối', 'error');
+    } finally {
+        btn.disabled = false;
+        btnText.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        hideLoading();
     }
 }
