@@ -107,24 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const keyParam = params.get('key');
 
-    // Set default date
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const dateStr = `${year}-${month}-${day}`;
-    document.getElementById('menuDate').value = dateStr;
-    document.getElementById('loadMenuDate').value = dateStr;
+    // Set default week
+    const currentWeekInfo = getCurrentWeek();
+
+    // Set default week for menu input
+    const menuWeekInput = document.getElementById('menuWeekInput');
+    if (menuWeekInput) {
+        menuWeekInput.value = currentWeekInfo;
+    }
 
     // Set default week for clone input
     const cloneWeekInput = document.getElementById('cloneWeekInput');
     if (cloneWeekInput) {
-        cloneWeekInput.value = getCurrentWeek();
+        cloneWeekInput.value = currentWeekInfo;
     }
-
-    // Init date displays
-    initDateDisplay('menuDate', 'menuDateDisplay');
-    initDateDisplay('loadMenuDate', 'loadMenuDateDisplay');
 
     // Try to auto-login: URL param > localStorage
     if (keyParam) {
@@ -181,36 +177,93 @@ async function verifyAdminKey() {
     }
 }
 
-async function saveMenu() {
-    const date = document.getElementById('menuDate').value;
-    const breakfast = document.getElementById('menuBreakfastInput').value.trim();
-    const lunch = document.getElementById('menuLunchInput').value.trim();
+const DAY_NAMES = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
+const DAY_PREFIXES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
-    if (!date) {
-        showToast('Vui lòng chọn ngày', 'error');
+async function loadWeeklyMenuForEdit() {
+    const weekStr = document.getElementById('menuWeekInput').value;
+    if (!weekStr) {
+        showToast('Vui lòng chọn tuần', 'error');
         return;
     }
 
+    showLoading('🍽️', 'Chờ chút bạn iưuưu~\nĐang tải thực đơn tuần...');
+
+    try {
+        const data = await apiGet('menu', { week: weekStr });
+        const grid = document.getElementById('weeklyMenuGrid');
+
+        if (data.status === 'ok' && data.data && data.data.length > 0) {
+            grid.classList.remove('hidden');
+
+            // Populate inputs
+            data.data.forEach((dayData, index) => {
+                if (index >= 5) return;
+                const prefix = DAY_PREFIXES[index];
+
+                const header = document.getElementById(`header${prefix}`);
+                const bInput = document.getElementById(`input${prefix}B`);
+                const lInput = document.getElementById(`input${prefix}L`);
+
+                header.textContent = `${DAY_NAMES[index]}, ${formatDateVN(dayData.date)}`;
+                bInput.value = dayData.breakfast || '';
+                lInput.value = dayData.lunch || '';
+
+                // Store date on inputs for saving later
+                bInput.dataset.date = dayData.date;
+                lInput.dataset.date = dayData.date;
+            });
+        }
+    } catch (e) {
+        console.error('Load menu failed:', e);
+        showToast('Lỗi kết nối', 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+async function saveWeeklyMenu() {
     const btnText = document.getElementById('btnMenuText');
     const spinner = document.getElementById('btnMenuSpinner');
+
+    // Gather all inputs
+    const menuBatch = [];
+
+    DAY_PREFIXES.forEach(prefix => {
+        const bInput = document.getElementById(`input${prefix}B`);
+        const lInput = document.getElementById(`input${prefix}L`);
+        const dateStr = bInput.dataset.date;
+
+        if (dateStr) {
+            menuBatch.push({
+                date: dateStr,
+                breakfast: bInput.value.trim(),
+                lunch: lInput.value.trim()
+            });
+        }
+    });
+
+    if (menuBatch.length === 0) {
+        showToast('Không có dữ liệu ngày để lưu', 'error');
+        return;
+    }
+
     btnText.classList.add('hidden');
     spinner.classList.remove('hidden');
 
     try {
-        const result = await apiPost('menu', {
-            date,
-            breakfast,
-            lunch,
+        const result = await apiPost('menu_batch', {
+            menus: menuBatch,
             admin_key: adminKey
         });
 
         if (result.status === 'ok') {
-            showToast('Đã lưu thực đơn thành công!', 'success');
+            showToast('Đã lưu thực đơn tuần thành công!', 'success');
         } else {
             showToast(result.message || 'Lưu thất bại', 'error');
         }
     } catch (e) {
-        console.error('Save menu failed:', e);
+        console.error('Save weekly menu failed:', e);
         showToast('Lỗi kết nối', 'error');
     } finally {
         btnText.classList.remove('hidden');
@@ -218,37 +271,32 @@ async function saveMenu() {
     }
 }
 
-async function loadExistingMenu() {
-    const date = document.getElementById('loadMenuDate').value;
-    if (!date) {
-        showToast('Vui lòng chọn ngày', 'error');
+async function purgeOldMenu() {
+    if (!confirm('Hành động này sẽ xóa vĩnh viễn các thực đơn trong danh sách (tính đến trước ngày hôm nay).\n\nBạn có muốn tiếp tục?')) {
         return;
     }
 
-    showLoading('🍽️', 'Chờ chút bạn iưuưu~\nĐang tải thực đơn...');
+    const btnText = document.getElementById('btnPurgeText');
+    const spinner = document.getElementById('btnPurgeSpinner');
+    btnText.classList.add('hidden');
+    spinner.classList.remove('hidden');
 
     try {
-        const data = await apiGet('menu', { date });
-        const info = document.getElementById('loadedMenuInfo');
+        const result = await apiPost('purge_menu', {
+            admin_key: adminKey
+        });
 
-        if (data.status === 'ok' && data.data) {
-            info.classList.remove('hidden');
-            document.getElementById('loadedBreakfast').textContent = data.data.breakfast || '—';
-            document.getElementById('loadedLunch').textContent = data.data.lunch || '—';
-
-            // Also fill in the edit fields
-            document.getElementById('menuDate').value = date;
-            document.getElementById('menuBreakfastInput').value = data.data.breakfast || '';
-            document.getElementById('menuLunchInput').value = data.data.lunch || '';
+        if (result.status === 'ok') {
+            showToast(`Đã dọn dẹp ${result.deletedCount} ngày thực đơn cũ!`, 'success');
         } else {
-            info.classList.add('hidden');
-            showToast('Chưa có thực đơn cho ngày này', 'error');
+            showToast(result.message || 'Xóa thất bại', 'error');
         }
     } catch (e) {
-        console.error('Load menu failed:', e);
+        console.error('Purge menu failed:', e);
         showToast('Lỗi kết nối', 'error');
     } finally {
-        hideLoading();
+        btnText.classList.remove('hidden');
+        spinner.classList.add('hidden');
     }
 }
 

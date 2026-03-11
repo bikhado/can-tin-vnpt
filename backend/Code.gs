@@ -176,6 +176,8 @@ function doPost(e) {
         return handleRegister(body);
       case 'register_batch':
         return handleRegisterBatch(body);
+      case 'purge_menu':
+        return handlePurgeMenu(body);
       case 'override':
         return handleOverride(body);
       case 'delete_registration':
@@ -336,6 +338,41 @@ function handleSaveMenuBatch(body) {
   });
 
   return jsonResponse({ status: 'ok', message: 'Weekly menu saved successfully' });
+}
+
+// POST /purge_menu (admin)
+function handlePurgeMenu(body) {
+  if (!verifyAdmin(body.admin_key)) {
+    return jsonResponse({ status: 'error', message: 'Invalid admin key' });
+  }
+
+  const sheet = getSheet(SHEET_MENU);
+  const data = sheet.getDataRange().getValues();
+  
+  // We want to delete rows where the date is strictly BEFORE today
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let deletedCount = 0;
+  // Iterate backwards when deleting rows to avoid index shifting issues
+  for (let i = data.length - 1; i > 0; i--) {
+    const rowDateStr = formatDateStr(data[i][0]);
+    if (!rowDateStr) continue;
+
+    const rowDate = new Date(rowDateStr + 'T00:00:00');
+    rowDate.setHours(0, 0, 0, 0);
+
+    if (rowDate < today) {
+      sheet.deleteRow(i + 1); // +1 because sheet rows are 1-indexed
+      deletedCount++;
+    }
+  }
+
+  return jsonResponse({ 
+    status: 'ok', 
+    message: 'Menu purged successfully',
+    deletedCount: deletedCount
+  });
 }
 
 // POST /register

@@ -50,59 +50,82 @@
     <!-- Admin Panel (hidden until auth) -->
     <div id="adminPanel" class="hidden">
 
-      <!-- Menu Management -->
+      <!-- Menu Management (Weekly) -->
       <div class="card">
-        <div class="card-title">Quản lý thực đơn</div>
+        <div class="card-title">Quản lý thực đơn tuần</div>
         <div class="form-group">
-          <label class="form-label" for="menuDate">Ngày</label>
-          <div class="date-wrap">
-            <input type="date" class="form-control" id="menuDate">
-            <span class="date-display placeholder" id="menuDateDisplay">dd/MM/yyyy</span>
+          <label class="form-label" for="menuWeekInput">Chọn tuần</label>
+          <div class="date-wrap flex-start">
+            <input type="week" class="form-control" id="menuWeekInput" style="flex:1;">
+            <button class="btn btn-outline btn-sm ml-8" onclick="loadWeeklyMenuForEdit()" style="margin-left: 8px;">
+              📥 TẢI
+            </button>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="menuBreakfastInput">Bữa sáng</label>
-          <input type="text" class="form-control" id="menuBreakfastInput" placeholder="VD: Bún Bò">
+        
+        <div id="weeklyMenuGrid" class="hidden">
+            <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px; text-align: center;">Để trống nghĩa là ngày đó không có món ăn.</div>
+            
+            <!-- Mon -->
+            <div class="day-edit-block">
+                <div class="day-edit-header" id="headerMon">Thứ Hai, --/--</div>
+                <div class="day-edit-inputs">
+                    <input type="text" class="form-control mb-4" id="inputMonB" placeholder="🌅 Bữa sáng">
+                    <input type="text" class="form-control" id="inputMonL" placeholder="☀️ Bữa trưa">
+                </div>
+            </div>
+            
+            <!-- Tue -->
+            <div class="day-edit-block">
+                <div class="day-edit-header" id="headerTue">Thứ Ba, --/--</div>
+                <div class="day-edit-inputs">
+                    <input type="text" class="form-control mb-4" id="inputTueB" placeholder="🌅 Bữa sáng">
+                    <input type="text" class="form-control" id="inputTueL" placeholder="☀️ Bữa trưa">
+                </div>
+            </div>
+
+            <!-- Wed -->
+            <div class="day-edit-block">
+                <div class="day-edit-header" id="headerWed">Thứ Tư, --/--</div>
+                <div class="day-edit-inputs">
+                    <input type="text" class="form-control mb-4" id="inputWedB" placeholder="🌅 Bữa sáng">
+                    <input type="text" class="form-control" id="inputWedL" placeholder="☀️ Bữa trưa">
+                </div>
+            </div>
+
+            <!-- Thu -->
+            <div class="day-edit-block">
+                <div class="day-edit-header" id="headerThu">Thứ Năm, --/--</div>
+                <div class="day-edit-inputs">
+                    <input type="text" class="form-control mb-4" id="inputThuB" placeholder="🌅 Bữa sáng">
+                    <input type="text" class="form-control" id="inputThuL" placeholder="☀️ Bữa trưa">
+                </div>
+            </div>
+
+            <!-- Fri -->
+            <div class="day-edit-block">
+                <div class="day-edit-header" id="headerFri">Thứ Sáu, --/--</div>
+                <div class="day-edit-inputs">
+                    <input type="text" class="form-control mb-4" id="inputFriB" placeholder="🌅 Bữa sáng">
+                    <input type="text" class="form-control" id="inputFriL" placeholder="☀️ Bữa trưa">
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-16" onclick="saveWeeklyMenu()">
+              <span id="btnMenuText">💾 LƯU THỰC ĐƠN TUẦN</span>
+              <div class="spinner hidden" id="btnMenuSpinner"></div>
+            </button>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="menuLunchInput">Bữa trưa</label>
-          <input type="text" class="form-control" id="menuLunchInput" placeholder="VD: Cá Kho">
-        </div>
-        <button class="btn btn-success" onclick="saveMenu()">
-          <span id="btnMenuText">💾 LƯU THỰC ĐƠN</span>
-          <div class="spinner hidden" id="btnMenuSpinner"></div>
-        </button>
       </div>
 
-      <!-- Load existing menu -->
+      <!-- Clear Old Menu -->
       <div class="card">
-        <div class="card-title">Tải thực đơn hiện tại</div>
-        <div class="form-group">
-          <label class="form-label" for="loadMenuDate">Chọn ngày để tải</label>
-          <div class="date-wrap">
-            <input type="date" class="form-control" id="loadMenuDate">
-            <span class="date-display placeholder" id="loadMenuDateDisplay">dd/MM/yyyy</span>
-          </div>
-        </div>
-        <button class="btn btn-outline btn-sm" onclick="loadExistingMenu()">
-          📥 TẢI THỰC ĐƠN
+        <div class="card-title">Dọn dẹp dữ liệu</div>
+        <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px;">Hệ thống sẽ tự động tìm và xóa các món ăn của những tuần trước đó (tính đến trước ngày hôm nay) để bảng tính gọn gàng hơn.</p>
+        <button class="btn btn-outline" style="border-color: var(--danger-500); color: var(--danger-500);" onclick="purgeOldMenu()">
+          <span id="btnPurgeText">🗑️ XÓA DỮ LIỆU CŨ</span>
+          <div class="spinner hidden" id="btnPurgeSpinner"></div>
         </button>
-        <div id="loadedMenuInfo" class="mt-16 hidden">
-          <div class="menu-card">
-            <div class="menu-emoji">🌅</div>
-            <div>
-              <div class="menu-label">Bữa sáng</div>
-              <div class="menu-name" id="loadedBreakfast">—</div>
-            </div>
-          </div>
-          <div class="menu-card">
-            <div class="menu-emoji">☀️</div>
-            <div>
-              <div class="menu-label">Bữa trưa</div>
-              <div class="menu-name" id="loadedLunch">—</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Clone Menu -->
