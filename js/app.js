@@ -86,14 +86,21 @@ function showToast(message, type = '') {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+let loadingCount = 0;
+
 function showLoading(emoji, text) {
+    loadingCount++;
     document.getElementById('loEmoji').textContent = emoji;
     document.getElementById('loText').textContent = text;
     document.getElementById('loadingOverlay').classList.add('show');
 }
 
 function hideLoading() {
-    document.getElementById('loadingOverlay').classList.remove('show');
+    loadingCount--;
+    if (loadingCount <= 0) {
+        loadingCount = 0;
+        document.getElementById('loadingOverlay').classList.remove('show');
+    }
 }
 
 function apiGet(action, params = {}) {
