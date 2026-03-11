@@ -95,7 +95,10 @@ function getPrevWeek(weekStr) {
 function addDays(dateStr, days) {
     const d = new Date(dateStr + 'T00:00:00');
     d.setDate(d.getDate() + days);
-    return d.toISOString().split('T')[0];
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
 }
 
 // ---- Init ----
@@ -106,7 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set default date
     const today = new Date();
-    const dateStr = today.toISOString().split('T')[0];
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
     document.getElementById('menuDate').value = dateStr;
     document.getElementById('loadMenuDate').value = dateStr;
 
