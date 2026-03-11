@@ -105,6 +105,22 @@
         </div>
       </div>
 
+      <!-- Clone Menu -->
+      <div class="card">
+        <div class="card-title">Sao chép thực đơn tuần</div>
+        <div class="form-group">
+          <label class="form-label" for="cloneWeekInput">Chọn tuần <strong>ÁP DỤNG</strong></label>
+          <div class="date-wrap">
+            <input type="week" class="form-control" id="cloneWeekInput">
+          </div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px;">Hệ thống sẽ lấy thực đơn của <strong>tuần trước đó</strong> và chép đè sang tuần bạn chọn ở trên.</p>
+        <button class="btn btn-primary" onclick="clonePreviousWeekMenu()">
+          <span id="btnCloneText">📋 COPY THỰC ĐƠN TUẦN TRƯỚC</span>
+          <div class="spinner hidden" id="btnCloneSpinner"></div>
+        </button>
+      </div>
+
       <!-- Override Cutoff -->
       <div class="card">
         <div class="card-title">Cài đặt hệ thống</div>

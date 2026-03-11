@@ -66,6 +66,38 @@ function initDateDisplay(inputId, displayId) {
     });
 }
 
+function getCurrentWeek() {
+    const now = new Date();
+    const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+}
+
+function getPrevWeek(weekStr) {
+    const parts = weekStr.split('-W');
+    let year = parseInt(parts[0]);
+    let week = parseInt(parts[1]);
+
+    if (week === 1) {
+        year -= 1;
+        const d = new Date(Date.UTC(year, 11, 28));
+        const yearStart = new Date(Date.UTC(year, 0, 1));
+        week = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    } else {
+        week -= 1;
+    }
+    return `${year}-W${String(week).padStart(2, '0')}`;
+}
+
+function addDays(dateStr, days) {
+    const d = new Date(dateStr + 'T00:00:00');
+    d.setDate(d.getDate() + days);
+    return d.toISOString().split('T')[0];
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
     // Check URL param for key
@@ -77,6 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateStr = today.toISOString().split('T')[0];
     document.getElementById('menuDate').value = dateStr;
     document.getElementById('loadMenuDate').value = dateStr;
+
+    // Set default week for clone input
+    const cloneWeekInput = document.getElementById('cloneWeekInput');
+    if (cloneWeekInput) {
+        cloneWeekInput.value = getCurrentWeek();
+    }
 
     // Init date displays
     initDateDisplay('menuDate', 'menuDateDisplay');
@@ -248,6 +286,66 @@ async function toggleOverride() {
         console.error('Toggle override failed:', e);
         showToast('Lỗi kết nối', 'error');
     } finally {
+        hideLoading();
+    }
+}
+
+async function clonePreviousWeekMenu() {
+    const weekInput = document.getElementById('cloneWeekInput').value;
+    if (!weekInput) {
+        showToast('Vui lòng chọn tuần áp dụng', 'error');
+        return;
+    }
+
+    const prevWeek = getPrevWeek(weekInput);
+    const btnText = document.getElementById('btnCloneText');
+    const spinner = document.getElementById('btnCloneSpinner');
+
+    btnText.classList.add('hidden');
+    spinner.classList.remove('hidden');
+    showLoading('🔄', 'Chờ chút bạn iưuưu~\nĐang sao chép thực đơn...');
+
+    try {
+        // Fetch previous week's menu
+        const resp = await apiGet('menu', { week: prevWeek });
+        if (!resp || resp.status !== 'ok' || !resp.data || resp.data.length === 0) {
+            showToast('Không tìm thấy thực đơn tuần trước để copy', 'error');
+            return;
+        }
+
+        const prevMenu = resp.data;
+        // Check if prevMenu has any actual food
+        const hasFood = prevMenu.some(d => d.breakfast || d.lunch);
+        if (!hasFood) {
+            showToast('Thực đơn tuần trước trống', 'error');
+            return;
+        }
+
+        // Shift dates by +7 days
+        const newMenus = prevMenu.map(d => ({
+            date: addDays(d.date, 7),
+            breakfast: d.breakfast,
+            lunch: d.lunch
+        }));
+
+        // Send to save batch
+        const saveResp = await apiPost('menu_batch', {
+            admin_key: adminKey,
+            menus: newMenus
+        });
+
+        if (saveResp.status === 'ok') {
+            showToast('Đã copy thực đơn thành công!', 'success');
+        } else {
+            showToast(saveResp.message || 'Copy thất bại', 'error');
+        }
+
+    } catch (e) {
+        console.error('Clone menu failed:', e);
+        showToast('Lỗi kết nối', 'error');
+    } finally {
+        btnText.classList.remove('hidden');
+        spinner.classList.add('hidden');
         hideLoading();
     }
 }
