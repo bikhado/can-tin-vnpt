@@ -78,6 +78,22 @@ function getWeekDates(weekStr) {
 }
 
 // ---- Init ----
+let weeklyChart = null;
+
+function getPrevWeek(weekStr) {
+    const dates = getWeekDates(weekStr);
+    const monday = new Date(dates[0] + 'T00:00:00');
+    monday.setDate(monday.getDate() - 7);
+
+    // Get ISO week string for this previous monday
+    const d = new Date(Date.UTC(monday.getFullYear(), monday.getMonth(), monday.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const weekInput = document.getElementById('weekInput');
     weekInput.value = getCurrentWeek();
@@ -92,6 +108,7 @@ async function loadWeeklyStats() {
 
     const totalStats = document.getElementById('totalStats');
     const weeklyCard = document.getElementById('weeklyCard');
+    const chartCard = document.getElementById('chartCard');
     const emptyState = document.getElementById('emptyState');
     const loadingScreen = document.getElementById('loadingScreen');
     const tbody = document.getElementById('weeklyBody');
@@ -99,29 +116,56 @@ async function loadWeeklyStats() {
     // Show loading
     totalStats.style.display = 'none';
     weeklyCard.style.display = 'none';
+    chartCard.style.display = 'none';
     emptyState.style.display = 'none';
     loadingScreen.style.display = '';
     showLoading('📊', 'Chờ chút bạn iưuưu~\nĐang tổng hợp thống kê tuần...');
 
     try {
-        const data = await apiGet('summary', { week: weekStr });
+        const prevWeekStr = getPrevWeek(weekStr);
+        // Fetch both current and previous week in parallel
+        const [data, prevData] = await Promise.all([
+            apiGet('summary', { week: weekStr }),
+            apiGet('summary', { week: prevWeekStr })
+        ]);
+
         loadingScreen.style.display = 'none';
         hideLoading();
 
         if (data.status === 'ok' && data.data) {
             const summary = data.data;
+            const prevSummary = (prevData.status === 'ok' && prevData.data) ? prevData.data : {};
+
             let grandBreakfast = 0;
             let grandLunch = 0;
+            let prevGrandBreakfast = 0;
+            let prevGrandLunch = 0;
             let hasData = false;
 
             tbody.innerHTML = '';
             const weekDates = getWeekDates(weekStr);
+            const prevWeekDates = getWeekDates(prevWeekStr);
+
+            // For chart data
+            const chartDataBreakfast = [];
+            const chartDataLunch = [];
 
             weekDates.forEach((dateStr, i) => {
+                // Current week total
                 const dayData = summary[dateStr] || { breakfast: 0, lunch: 0 };
                 grandBreakfast += dayData.breakfast;
                 grandLunch += dayData.lunch;
                 if (dayData.breakfast > 0 || dayData.lunch > 0) hasData = true;
+
+                // Chart arrays
+                chartDataBreakfast.push(dayData.breakfast);
+                chartDataLunch.push(dayData.lunch);
+
+                // Previous week total
+                const prevDateStr = prevWeekDates[i];
+                const prevDayData = prevSummary[prevDateStr] || { breakfast: 0, lunch: 0 };
+                prevGrandBreakfast += prevDayData.breakfast;
+                prevGrandLunch += prevDayData.lunch;
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -142,8 +186,17 @@ async function loadWeeklyStats() {
             if (hasData) {
                 document.getElementById('weekBreakfast').textContent = grandBreakfast;
                 document.getElementById('weekLunch').textContent = grandLunch;
+
+                // Render Growth Indicators
+                renderGrowth('breakfastGrowth', grandBreakfast, prevGrandBreakfast);
+                renderGrowth('lunchGrowth', grandLunch, prevGrandLunch);
+
                 totalStats.style.display = '';
                 weeklyCard.style.display = '';
+                chartCard.style.display = '';
+
+                // Render Chart
+                renderChart(chartDataBreakfast, chartDataLunch);
             } else {
                 emptyState.style.display = '';
             }
@@ -157,4 +210,76 @@ async function loadWeeklyStats() {
         console.error('Failed to load stats:', e);
         showToast('Lỗi kết nối', 'error');
     }
+}
+
+function renderGrowth(elId, current, prev) {
+    const el = document.getElementById(elId);
+    if (!prev) {
+        el.innerHTML = '<span style="color:var(--gray-400)">Tuần trước: 0 (Mới)</span>';
+        return;
+    }
+
+    // Check missing current vs missing prev
+    if (current === prev) {
+        el.innerHTML = '<span style="color:var(--gray-500)">➖ Bằng tuần trước</span>';
+        return;
+    }
+
+    const diff = current - prev;
+    const percent = Math.round((Math.abs(diff) / prev) * 100);
+
+    if (diff > 0) {
+        el.innerHTML = `<span style="color:#10B981;">▲ Tăng ${percent}% (${diff} suất)</span>`;
+    } else {
+        el.innerHTML = `<span style="color:#EF4444;">▼ Giảm ${percent}% (${Math.abs(diff)} suất)</span>`;
+    }
+}
+
+function renderChart(breakfastData, lunchData) {
+    const ctx = document.getElementById('weeklyChart').getContext('2d');
+
+    if (weeklyChart) {
+        weeklyChart.destroy();
+    }
+
+    weeklyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: DAY_NAMES,
+            datasets: [
+                {
+                    label: 'Bữa Sáng',
+                    data: breakfastData,
+                    backgroundColor: '#F59E0B',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Bữa Trưa',
+                    data: lunchData,
+                    backgroundColor: '#10B981',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { family: "'Inter', sans-serif" }
+                    }
+                }
+            }
+        }
+    });
 }
