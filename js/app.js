@@ -444,9 +444,22 @@ function renderWeeklyCalendar(weeklyMenu, empRegs, overrideCutoff) {
 
 function checkAll(type) {
     const checkboxes = document.querySelectorAll(type === 'breakfast' ? '.cb-breakfast:not(:disabled)' : '.cb-lunch:not(:disabled)');
+    if (checkboxes.length === 0) return;
+
+    let allChecked = true;
     checkboxes.forEach(cb => {
-        cb.checked = true;
-        cb.closest('.meal-check').classList.add('checked');
+        if (!cb.checked) allChecked = false;
+    });
+
+    const newState = !allChecked;
+
+    checkboxes.forEach(cb => {
+        cb.checked = newState;
+        if (newState) {
+            cb.closest('.meal-check').classList.add('checked');
+        } else {
+            cb.closest('.meal-check').classList.remove('checked');
+        }
     });
 }
 
