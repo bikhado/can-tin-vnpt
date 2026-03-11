@@ -144,10 +144,25 @@
     </button>
 
     <!-- Cancel Registration Button (only visible when editing) -->
-    <button class="btn btn-danger mt-8" id="btnCancel" style="display:none;" onclick="cancelRegistration()">
+    <button class="btn btn-danger mt-8" id="btnCancel" style="display:none;" onclick="showCancelConfirm()">
       <span id="btnCancelText">🗑️ HỦY ĐĂNG KÝ</span>
       <div class="spinner hidden" id="btnCancelSpinner"></div>
     </button>
+
+  </main>
+
+  <!-- Confirm Modal -->
+  <div class="emp-modal-overlay" id="confirmModal">
+    <div class="confirm-dialog">
+      <div class="confirm-icon">⚠️</div>
+      <h3 class="confirm-title" id="confirmTitle">Xác nhận</h3>
+      <p class="confirm-msg" id="confirmMessage">Bạn có chắc chắn muốn thực hiện hành động này?</p>
+      <div class="confirm-actions">
+        <button class="btn btn-secondary" onclick="closeConfirmModal()">Không</button>
+        <button class="btn btn-danger" id="confirmBtnYes">Có, Hủy ngay</button>
+      </div>
+    </div>
+  </div>
 
   </main>
 

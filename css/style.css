@@ -929,6 +929,57 @@ tbody tr:hover {
   }
 }
 
+/* ---------- Confirm Modal ---------- */
+.confirm-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: white;
+  width: 90%;
+  max-width: 320px;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  transition: all .3s var(--ease);
+}
+
+.emp-modal-overlay.show .confirm-dialog {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.confirm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.confirm-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+
+.confirm-msg {
+  font-size: .95rem;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.confirm-actions .btn {
+  flex: 1;
+  padding: 12px;
+}
+
 .emp-modal-header {
   display: flex;
   align-items: center;

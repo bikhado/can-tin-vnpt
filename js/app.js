@@ -456,15 +456,29 @@ async function submitRegistration() {
     }
 }
 
+function showCancelConfirm() {
+    const dateStr = document.getElementById('dateInput').value;
+    if (!dateStr) return;
+
+    document.getElementById('confirmMessage').innerHTML = `Bạn có chắc muốn hủy đăng ký suất ăn ngày <strong style="color:var(--danger-500)">${formatDateVN(dateStr)}</strong> không?`;
+    document.getElementById('confirmModal').classList.add('show');
+
+    // Bind the Yes button to cancelRegistration
+    document.getElementById('confirmBtnYes').onclick = () => {
+        closeConfirmModal();
+        cancelRegistration();
+    };
+}
+
+function closeConfirmModal() {
+    document.getElementById('confirmModal').classList.remove('show');
+}
+
 async function cancelRegistration() {
     const employee = document.getElementById('employeeSelect').value;
     const dateStr = document.getElementById('dateInput').value;
 
     if (!employee || !dateStr) return;
-
-    if (!confirm(`Bạn có chắc muốn hủy đăng ký suất ăn ngày ${formatDateVN(dateStr)} không?`)) {
-        return;
-    }
 
     const btn = document.getElementById('btnCancel');
     const btnText = document.getElementById('btnCancelText');
