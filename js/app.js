@@ -310,6 +310,8 @@ async function onSelectionChange() {
 
     if (!employee || !dateStr) return;
 
+    showLoading('⏳', 'Chờ chút bạn iưuưu~\nĐang kiểm tra dữ liệu đăng ký...');
+
     // Check existing registration
     try {
         const data = await apiGet('registrations', { date: dateStr });
@@ -351,6 +353,8 @@ async function onSelectionChange() {
         }
     } catch (e) {
         console.error('Failed to check existing registration:', e);
+    } finally {
+        hideLoading();
     }
 }
 
