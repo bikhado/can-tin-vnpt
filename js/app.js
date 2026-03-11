@@ -129,24 +129,31 @@ function toggleMeal(el) {
     }
 }
 
+function getCurrentWeek() {
+    const now = new Date();
+    const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
-    const dateInput = document.getElementById('dateInput');
+    const weekInput = document.getElementById('weekInput');
 
-    // Set default date
-    const defaultDate = getTodayOrNextWeekday();
-    dateInput.value = formatDate(defaultDate);
+    // Set default week
+    weekInput.value = getCurrentWeek();
 
     // Event listeners
-    dateInput.addEventListener('change', onDateChange);
-
-    // Init date display
-    initDateDisplay('dateInput', 'dateInputDisplay');
+    weekInput.addEventListener('change', onWeekChange);
 
     // Load employees from local JSON
     loadEmployees();
+
     // Trigger initial load
-    onDateChange();
+    onWeekChange();
 });
 
 let depts = [];
@@ -300,161 +307,178 @@ function selectEmployee(emp) {
         pickerBtn.dataset.department = found.department;
     }
 
-    onSelectionChange();
+    onWeekChange();
 }
 
-function onDateChange() {
-    const dateInput = document.getElementById('dateInput');
-    const dateStr = dateInput.value;
-    const deadlineAlert = document.getElementById('deadlineAlert');
-    const menuCard = document.getElementById('menuCard');
-    const mealCard = document.getElementById('mealCard');
+function onWeekChange() {
+    const weekInput = document.getElementById('weekInput');
+    const weekStr = weekInput.value;
+    const employee = document.getElementById('employeeSelect').value;
+    const calendarCard = document.getElementById('calendarCard');
     const deadlineInfo = document.getElementById('deadlineInfo');
     const btnRegister = document.getElementById('btnRegister');
-    const existingAlert = document.getElementById('existingAlert');
 
-    // Reset
-    existingAlert.classList.add('hidden');
-    isEditing = false;
-
-    if (!dateStr) {
-        menuCard.style.display = 'none';
-        mealCard.style.display = 'none';
-        deadlineInfo.style.display = 'none';
-        btnRegister.style.display = 'none';
-        deadlineAlert.classList.add('hidden');
+    if (!weekStr) {
+        if (calendarCard) calendarCard.style.display = 'none';
+        if (deadlineInfo) deadlineInfo.style.display = 'none';
+        if (btnRegister) btnRegister.style.display = 'none';
         return;
     }
 
-    // Weekend check
-    if (isWeekend(dateStr)) {
-        showToast('Không thể đăng ký vào cuối tuần', 'error');
-        deadlineAlert.classList.add('hidden');
-        menuCard.style.display = 'none';
-        mealCard.style.display = 'none';
-        deadlineInfo.style.display = 'none';
-        btnRegister.style.display = 'none';
-        return;
+    if (employee) {
+        loadWeeklyMenuAndReg(weekStr, employee);
     }
+}
 
-    // Deadline check
-    deadlinePassed = checkDeadline(dateStr);
-    if (deadlinePassed) {
-        deadlineAlert.classList.remove('hidden');
-        // We still show the menu and allow if override is on (backend will handle)
-    } else {
-        deadlineAlert.classList.add('hidden');
-    }
+const DAY_NAMES = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu'];
 
-    // Show UI
-    menuCard.style.display = '';
-    mealCard.style.display = '';
+async function loadWeeklyMenuAndReg(weekStr, employee) {
+    const calendarCard = document.getElementById('calendarCard');
+    const deadlineInfo = document.getElementById('deadlineInfo');
+    const btnRegister = document.getElementById('btnRegister');
+
+    // Show UI containers
+    calendarCard.style.display = '';
     deadlineInfo.style.display = '';
     btnRegister.style.display = '';
 
-    // Load menu
-    loadMenu(dateStr);
+    showLoading('⏳', 'Chờ chút bạn iưuưu~\nĐang tải lịch tuần...');
 
-    // Check existing registration
-    onSelectionChange();
-}
-
-async function loadMenu(dateStr) {
-    showLoading('🍽️', 'Chờ chút bạn iưuưu~\nĐang load menu đồ á!');
     try {
-        const data = await apiGet('menu', { date: dateStr });
-        if (data.status === 'ok' && data.data) {
-            currentMenu = data.data;
-            document.getElementById('menuBreakfast').textContent = data.data.breakfast || '—';
-            document.getElementById('menuLunch').textContent = data.data.lunch || '—';
-            document.getElementById('mealBreakfastName').textContent = data.data.breakfast || '—';
-            document.getElementById('mealLunchName').textContent = data.data.lunch || '—';
-        } else {
-            currentMenu = null;
-            document.getElementById('menuBreakfast').textContent = 'Chưa có thực đơn';
-            document.getElementById('menuLunch').textContent = 'Chưa có thực đơn';
-            document.getElementById('mealBreakfastName').textContent = 'Chưa có thực đơn';
-            document.getElementById('mealLunchName').textContent = 'Chưa có thực đơn';
-        }
-    } catch (e) {
-        console.error('Failed to load menu:', e);
-    } finally {
-        hideLoading();
-    }
-}
+        const [menuData, regData, overrideData] = await Promise.all([
+            apiGet('menu', { week: weekStr }),
+            apiGet('registrations', { week: weekStr }),
+            apiGet('settings', { key: 'override_cutoff' })
+        ]);
 
-async function onSelectionChange() {
-    const employee = document.getElementById('employeeSelect').value;
-    const dateStr = document.getElementById('dateInput').value;
-    const existingAlert = document.getElementById('existingAlert');
-    const btnText = document.getElementById('btnText');
+        const overrideCutoff = overrideData?.data?.value === 'true';
 
-    if (!employee || !dateStr) return;
+        if (menuData.status === 'ok' && menuData.data) {
+            const weeklyMenu = menuData.data; // array of 5 days
+            const allRegs = regData.status === 'ok' ? regData.data : [];
+            const empRegs = allRegs.filter(r => r.employee === employee);
 
-    showLoading('⏳', 'Chờ chút bạn iưuưu~\nĐang kiểm tra dữ liệu đăng ký...');
+            renderWeeklyCalendar(weeklyMenu, empRegs, overrideCutoff);
 
-    // Check existing registration
-    try {
-        const data = await apiGet('registrations', { date: dateStr });
-        if (data.status === 'ok') {
-            const existing = data.data.find(r => r.employee === employee);
-            if (existing) {
+            // Check if any existing regs
+            const btnText = document.getElementById('btnText');
+            if (empRegs.length > 0) {
                 isEditing = true;
-                existingAlert.classList.remove('hidden');
                 btnText.textContent = '💾 CẬP NHẬT';
-                document.getElementById('btnCancel').style.display = 'inline-block';
-
-                // Set checkboxes
-                const cbBreakfast = document.getElementById('cbBreakfast');
-                const cbLunch = document.getElementById('cbLunch');
-                const breakfastCheck = document.getElementById('breakfastCheck');
-                const lunchCheck = document.getElementById('lunchCheck');
-
-                cbBreakfast.checked = existing.breakfast === 'yes';
-                cbLunch.checked = existing.lunch === 'yes';
-
-                if (cbBreakfast.checked) breakfastCheck.classList.add('checked');
-                else breakfastCheck.classList.remove('checked');
-
-                if (cbLunch.checked) lunchCheck.classList.add('checked');
-                else lunchCheck.classList.remove('checked');
-
+                document.getElementById('existingAlert').classList.remove('hidden');
             } else {
                 isEditing = false;
-                existingAlert.classList.add('hidden');
                 btnText.textContent = '✅ ĐĂNG KÝ';
-                document.getElementById('btnCancel').style.display = 'none';
-
-                // Reset checkboxes
-                document.getElementById('cbBreakfast').checked = false;
-                document.getElementById('cbLunch').checked = false;
-                document.getElementById('breakfastCheck').classList.remove('checked');
-                document.getElementById('lunchCheck').classList.remove('checked');
+                document.getElementById('existingAlert').classList.add('hidden');
             }
         }
     } catch (e) {
-        console.error('Failed to check existing registration:', e);
+        console.error('Failed to load weekly data:', e);
+        showToast('Lỗi kết nối', 'error');
     } finally {
         hideLoading();
     }
+}
+
+function renderWeeklyCalendar(weeklyMenu, empRegs, overrideCutoff) {
+    const container = document.getElementById('weeklyCalendar');
+    container.innerHTML = '';
+
+    weeklyMenu.forEach((dayMenu, i) => {
+        const dateStr = dayMenu.date;
+        const reg = empRegs.find(r => r.date === dateStr);
+        let isLocked = false;
+
+        if (!overrideCutoff && checkDeadline(dateStr)) {
+            isLocked = true;
+        }
+
+        const bChecked = (reg && reg.breakfast === 'yes') ? 'checked' : '';
+        const lChecked = (reg && reg.lunch === 'yes') ? 'checked' : '';
+
+        const block = document.createElement('div');
+        block.className = 'day-block';
+
+        const header = document.createElement('div');
+        header.className = 'day-header ' + (isLocked ? 'disabled' : '');
+        header.innerHTML = `
+            <div class="day-header-left">
+                <span>${DAY_NAMES[i]}</span>
+            </div>
+            <div class="day-header-right">
+                <span>${formatDateVN(dateStr)}</span>
+                ${isLocked ? '<span style="color:var(--danger-500)">🔒 Hết hạn</span>' : ''}
+            </div>
+        `;
+
+        const meals = document.createElement('div');
+        meals.className = 'day-meals';
+
+        meals.innerHTML = `
+            <label class="meal-check ${bChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
+              <input type="checkbox" class="cb-breakfast" value="${dateStr}" ${bChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''}>
+              <div class="check-box"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></div>
+              <div class="meal-info">
+                <div class="meal-type">Bữa sáng</div>
+                <div class="meal-menu">${dayMenu.breakfast || '—'}</div>
+              </div>
+            </label>
+            <label class="meal-check ${lChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
+              <input type="checkbox" class="cb-lunch" value="${dateStr}" ${lChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''}>
+              <div class="check-box"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></div>
+              <div class="meal-info">
+                <div class="meal-type">Bữa trưa</div>
+                <div class="meal-menu">${dayMenu.lunch || '—'}</div>
+              </div>
+            </label>
+        `;
+
+        block.appendChild(header);
+        block.appendChild(meals);
+        container.appendChild(block);
+    });
+}
+
+function checkAll(type) {
+    const checkboxes = document.querySelectorAll(type === 'breakfast' ? '.cb-breakfast:not(:disabled)' : '.cb-lunch:not(:disabled)');
+    checkboxes.forEach(cb => {
+        cb.checked = true;
+        cb.closest('.meal-check').classList.add('checked');
+    });
 }
 
 async function submitRegistration() {
     const employee = document.getElementById('employeeSelect').value;
-    const dateStr = document.getElementById('dateInput').value;
-    const breakfast = document.getElementById('cbBreakfast').checked;
-    const lunch = document.getElementById('cbLunch').checked;
+    const pickerBtn = document.getElementById('empPickerBtn');
+    const department = pickerBtn.dataset.department || '';
 
     if (!employee) {
         showToast('Vui lòng chọn nhân viên', 'error');
         return;
     }
-    if (!dateStr) {
-        showToast('Vui lòng chọn ngày', 'error');
-        return;
-    }
-    if (!breakfast && !lunch) {
-        showToast('Vui lòng chọn ít nhất một bữa ăn', 'error');
+
+    const regs = [];
+    const blocks = document.querySelectorAll('.day-block');
+
+    blocks.forEach(block => {
+        const bCb = block.querySelector('.cb-breakfast');
+        const lCb = block.querySelector('.cb-lunch');
+
+        if (bCb && lCb) {
+            const dateStr = bCb.value;
+            // Only send changes for valid/unlocked days
+            if (!bCb.disabled) {
+                regs.push({
+                    date: dateStr,
+                    breakfast: bCb.checked ? 'yes' : 'no',
+                    lunch: lCb.checked ? 'yes' : 'no'
+                });
+            }
+        }
+    });
+
+    if (regs.length === 0) {
+        showToast('Không có ngày nào hợp lệ để đăng ký', 'error');
         return;
     }
 
@@ -465,87 +489,26 @@ async function submitRegistration() {
     btn.disabled = true;
     btnText.classList.add('hidden');
     spinner.classList.remove('hidden');
-
-    // Find department
-    const emp = employees.find(e => e.name === employee);
-    const department = emp ? emp.department : '';
+    showLoading('�', 'Chờ chút bạn iưuưu~\nĐang lưu đăng ký tuần...');
 
     try {
-        const result = await apiPost('register', {
-            date: dateStr,
+        const result = await apiPost('register_batch', {
             employee: employee,
             department: department,
-            breakfast: breakfast ? 'yes' : 'no',
-            lunch: lunch ? 'yes' : 'no'
+            registrations: regs
         });
 
         if (result.status === 'ok') {
-            showToast(isEditing ? 'Đã cập nhật thành công!' : 'Đăng ký thành công!', 'success');
+            showToast(result.message || 'Lưu thành công!', 'success');
             isEditing = true;
-            btnText.textContent = 'CẬP NHẬT';
+            btnText.textContent = '💾 CẬP NHẬT';
             document.getElementById('existingAlert').classList.remove('hidden');
         } else {
-            showToast(result.message || 'Đăng ký thất bại', 'error');
+            showToast(result.message || 'Lưu thất bại', 'error');
         }
     } catch (e) {
         console.error('Registration failed:', e);
         showToast('Lỗi kết nối. Vui lòng thử lại.', 'error');
-    } finally {
-        btn.disabled = false;
-        btnText.classList.remove('hidden');
-        spinner.classList.add('hidden');
-    }
-}
-
-function showCancelConfirm() {
-    const dateStr = document.getElementById('dateInput').value;
-    if (!dateStr) return;
-
-    document.getElementById('confirmMessage').innerHTML = `Bạn có chắc muốn hủy đăng ký suất ăn ngày <strong style="color:var(--danger-500)">${formatDateVN(dateStr)}</strong> không?`;
-    document.getElementById('confirmModal').classList.add('show');
-
-    // Bind the Yes button to cancelRegistration
-    document.getElementById('confirmBtnYes').onclick = () => {
-        closeConfirmModal();
-        cancelRegistration();
-    };
-}
-
-function closeConfirmModal() {
-    document.getElementById('confirmModal').classList.remove('show');
-}
-
-async function cancelRegistration() {
-    const employee = document.getElementById('employeeSelect').value;
-    const dateStr = document.getElementById('dateInput').value;
-
-    if (!employee || !dateStr) return;
-
-    const btn = document.getElementById('btnCancel');
-    const btnText = document.getElementById('btnCancelText');
-    const spinner = document.getElementById('btnCancelSpinner');
-
-    btn.disabled = true;
-    btnText.classList.add('hidden');
-    spinner.classList.remove('hidden');
-    showLoading('🗑️', 'Chờ chút bạn iưuưu~\nĐang hủy đăng ký...');
-
-    try {
-        const result = await apiPost('delete_registration', {
-            date: dateStr,
-            employee: employee
-        });
-
-        if (result.status === 'ok') {
-            showToast('Đã hủy đăng ký thành công!', 'success');
-            // Refresh state
-            onSelectionChange();
-        } else {
-            showToast(result.message || 'Lỗi khi hủy đăng ký', 'error');
-        }
-    } catch (e) {
-        console.error('Failed to cancel registration:', e);
-        showToast('Lỗi kết nối', 'error');
     } finally {
         btn.disabled = false;
         btnText.classList.remove('hidden');

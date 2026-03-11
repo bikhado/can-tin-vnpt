@@ -1175,6 +1175,67 @@ tbody tr:hover {
   display: none !important;
 }
 
+/* ---------- Weekly Calendar Registration ---------- */
+.day-block {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: white;
+}
+
+.day-header {
+  background: var(--gray-50);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.day-header.disabled {
+  background: var(--gray-100);
+  color: var(--gray-400);
+}
+
+.day-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.day-header-right {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.day-meals {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-meals .meal-check {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--gray-100);
+  margin-bottom: 0;
+}
+
+.day-meals .meal-check:last-child {
+  border-bottom: none;
+}
+
+.meal-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  background-color: var(--gray-50);
+}
+
 /* ---------- Responsive ---------- */
 @media (min-width: 768px) {
   .page-header {
