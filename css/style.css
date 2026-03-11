@@ -149,8 +149,10 @@ body {
   color: white;
   padding: 16px 20px 24px;
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -197,6 +199,7 @@ body {
 /* ---------- Container ---------- */
 .container {
   padding: 16px;
+  padding-top: calc(16px + 88px);
   max-width: 600px;
   margin: 0 auto;
 }
