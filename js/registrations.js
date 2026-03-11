@@ -11,6 +11,16 @@ function showToast(message, type = '') {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+function showLoading(emoji, text) {
+    document.getElementById('loEmoji').textContent = emoji;
+    document.getElementById('loText').textContent = text;
+    document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('show');
+}
+
 function formatDateVN(dateStr) {
     if (!dateStr) return '';
     const parts = dateStr.split('-');
@@ -71,10 +81,12 @@ async function loadRegistrations() {
     statGrid.style.display = 'none';
     emptyState.style.display = 'none';
     loadingScreen.style.display = '';
+    showLoading('📋', 'Chờ chút bạn iưuưu~\nĐang tải danh sách đăng ký...');
 
     try {
         const data = await apiGet('registrations', { date: dateStr });
         loadingScreen.style.display = 'none';
+        hideLoading();
 
         if (data.status === 'ok' && data.data && data.data.length > 0) {
             const registrations = data.data;
@@ -111,6 +123,7 @@ async function loadRegistrations() {
     } catch (e) {
         loadingScreen.style.display = 'none';
         emptyState.style.display = '';
+        hideLoading();
         console.error('Failed to load registrations:', e);
         showToast('Lỗi kết nối', 'error');
     }

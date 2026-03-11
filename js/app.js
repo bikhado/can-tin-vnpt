@@ -86,6 +86,16 @@ function showToast(message, type = '') {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+function showLoading(emoji, text) {
+    document.getElementById('loEmoji').textContent = emoji;
+    document.getElementById('loText').textContent = text;
+    document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('show');
+}
+
 function apiGet(action, params = {}) {
     const url = new URL(CONFIG.API_BASE_URL);
     url.searchParams.set('action', action);
@@ -134,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadEmployees() {
+    showLoading('👨‍💼', 'Chờ chút bạn iưuưu~\nĐang tải danh sách nhân viên...');
     try {
         const data = await apiGet('employees');
         if (data.status === 'ok') {
@@ -150,6 +161,8 @@ async function loadEmployees() {
         console.error('Failed to load employees:', e);
         // Show offline-friendly message
         showToast('Không thể tải danh sách nhân viên', 'error');
+    } finally {
+        hideLoading();
     }
 }
 
@@ -210,6 +223,7 @@ function onDateChange() {
 }
 
 async function loadMenu(dateStr) {
+    showLoading('🍽️', 'Chờ chút bạn iưuưu~\nĐang load menu đồ á!');
     try {
         const data = await apiGet('menu', { date: dateStr });
         if (data.status === 'ok' && data.data) {
@@ -227,6 +241,8 @@ async function loadMenu(dateStr) {
         }
     } catch (e) {
         console.error('Failed to load menu:', e);
+    } finally {
+        hideLoading();
     }
 }
 

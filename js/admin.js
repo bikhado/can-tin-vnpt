@@ -21,6 +21,16 @@ function showToast(message, type = '') {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+function showLoading(emoji, text) {
+    document.getElementById('loEmoji').textContent = emoji;
+    document.getElementById('loText').textContent = text;
+    document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('show');
+}
+
 function apiGet(action, params = {}) {
     const url = new URL(CONFIG.API_BASE_URL);
     url.searchParams.set('action', action);
@@ -81,6 +91,7 @@ async function verifyAdminKey() {
     btn.disabled = true;
     btnText.classList.add('hidden');
     spinner.classList.remove('hidden');
+    showLoading('🔐', 'Chờ chút bạn iưuưu~\nĐang xác thực Admin Key...');
 
     try {
         const data = await apiGet('verify_admin', { key });
@@ -102,6 +113,7 @@ async function verifyAdminKey() {
         btn.disabled = false;
         btnText.classList.remove('hidden');
         spinner.classList.add('hidden');
+        hideLoading();
     }
 }
 

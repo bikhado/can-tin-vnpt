@@ -719,6 +719,95 @@ tbody tr:hover {
   height: 32px;
 }
 
+/* ---------- Global Loading Overlay ---------- */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 8888;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease);
+}
+
+.loading-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loading-overlay .lo-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  animation: bounceIn .4s var(--ease);
+  max-width: 280px;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(.85);
+  }
+
+  60% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.loading-overlay .lo-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  animation: wiggle 1s ease infinite;
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-8deg);
+  }
+
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+.loading-overlay .lo-text {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+
+.loading-overlay .lo-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--gray-200);
+  border-radius: 50%;
+  border-top-color: var(--primary-500);
+  animation: spin .6s linear infinite;
+  margin-top: 8px;
+}
+
 /* ---------- Empty State ---------- */
 .empty-state {
   text-align: center;
