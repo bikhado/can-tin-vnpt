@@ -176,8 +176,13 @@ function getInitials(name) {
     return name.substring(0, 2).toUpperCase();
 }
 
-
-
+function removeAccents(str) {
+    if (!str) return '';
+    return str.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D');
+}
 function renderPickerList() {
     const container = document.getElementById('empList');
     const query = document.getElementById('empSearchInput').value.toLowerCase().trim();
@@ -189,10 +194,12 @@ function renderPickerList() {
         document.getElementById('empModalTitle').textContent = '🔍 Kết quả tìm kiếm';
         document.getElementById('empModalBack').style.display = 'none';
 
-        const filtered = employees.filter(emp =>
-            emp.name.toLowerCase().includes(query) ||
-            emp.department.toLowerCase().includes(query)
-        );
+        const queryClean = removeAccents(query);
+        const filtered = employees.filter(emp => {
+            const nameClean = removeAccents(emp.name.toLowerCase());
+            const deptClean = removeAccents((emp.department || '').toLowerCase());
+            return nameClean.includes(queryClean) || deptClean.includes(queryClean);
+        });
 
         renderEmployees(filtered, container);
         document.getElementById('empCount').textContent = filtered.length + ' kết quả';
