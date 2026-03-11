@@ -1,0 +1,2290 @@
+[
+  {
+    "name": "A Hóa",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Glei"
+  },
+  {
+    "name": "A Hốt",
+    "department": "Tổ Kinh doanh Địa bàn Tu Mơ Rông"
+  },
+  {
+    "name": "Bùi Duy Sáng",
+    "department": "Tổ Kỹ thuật Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Bùi Đức Quang",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Bùi Hoàng Thanh Vũ",
+    "department": "Tổ Hạ tầng Tư Nghĩa"
+  },
+  {
+    "name": "Bùi Ngọc Hạnh",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Bùi Ngọc Tuấn",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Bùi Phương Hoàng Châu",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Bùi Sơn Trà",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Bùi Tấn Mẫn",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Bùi Thanh Chương",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Bùi Thanh Trà",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Bùi Thanh Tuấn",
+    "department": "Tổ Kỹ thuật Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Bùi Thị Bảo Trinh",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Bùi Thị Phương Anh",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Bùi Thị Thanh Thủy",
+    "department": "Tổ Outbound Chăm sóc Khách hàng"
+  },
+  {
+    "name": "Bùi Thị Thảo Loan",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Bùi Văn Nhàn",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Bùi Văn Vọng",
+    "department": "Tổ Hạ tầng Sơn Tịnh"
+  },
+  {
+    "name": "Bùi Vũ Tùng",
+    "department": "Tổ Kỹ thuật Địa bàn Trà Bồng - Tây Trà"
+  },
+  {
+    "name": "Bùi Xuân Tiến",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Cao Bá Hoàng Bách",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Cao Đức Lợi",
+    "department": "Tổ Kỹ thuật Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Cao Thị Hồng Hạnh",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Cao Thị Kiều Mơ",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Cao Thị Mi Mi",
+    "department": "Tổ Kinh doanh Online"
+  },
+  {
+    "name": "Cao Thị Thùy Ngân",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Cao Trường Giang",
+    "department": "Tổ Kỹ thuật Địa bàn Tu Mơ Rông"
+  },
+  {
+    "name": "Cao Xuân Tài",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Chế Nguyễn Lệ Trâm",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Chung Quang Ngọc",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Cù Sĩ Sinh",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Diệp Bảo Thạnh",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Dương Công Cát Tường",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Dương Quang Đức",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Dương Quốc Thịnh",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Dương Thị Có",
+    "department": "Tổ Kinh doanh Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Dương Thị Tuyết Nhi",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Dương Văn Khiêm",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Đào Hữu Phước",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Đào Thị Kiều",
+    "department": "Tổ Chăm sóc Khách hàng Online"
+  },
+  {
+    "name": "Đặng Bảo Tuấn",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Đặng Duy Thuận",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Đặng Lê Huy Thái",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Đặng Minh Mão",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Đặng Minh Quảng",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Đặng Minh Toản",
+    "department": "Tổ Kỹ thuật Địa bàn Kon Plông"
+  },
+  {
+    "name": "Đặng Thành Quyết",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Đặng Thị Công Dưỡng",
+    "department": "Tổ Kinh doanh Địa bàn Trà Bồng"
+  },
+  {
+    "name": "Đặng Thị Hồng Trang",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Đặng Thu Hoài",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Đinh Duyên Thọ",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Đinh Thành Tâm",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Đinh Thị Thu Hiền",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Đinh Trung Thành",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Đinh Văn Bình",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Đinh Văn Lênh",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Đinh Văn Sang",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Đinh Văn Sinh",
+    "department": "Tổ Kỹ thuật Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Đinh Văn Trọng",
+    "department": "Tổ Kỹ thuật Địa bàn Tu Mơ Rông"
+  },
+  {
+    "name": "Đoàn Đức Dũng",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Đoàn Ngọc Hiệp",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Đoàn Ngọc Trọng",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Đoàn Quang Long",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Đoàn Quốc Bửu",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Đoàn Thanh Phát",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Đoàn Thanh Vũ",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Đoàn Thị Lan Anh",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Đoàn Thị Quỳnh Anh",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Đoàn Trọng Hối",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Đỗ Đức Kha",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Đỗ Hải Thanh",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Đỗ Tấn Lập",
+    "department": "Tổ Kinh doanh Địa bàn Trà Bồng"
+  },
+  {
+    "name": "Đỗ Thành Nhân",
+    "department": "Tổ Hạ tầng Tư Nghĩa"
+  },
+  {
+    "name": "Đỗ Thị Diệu",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Đỗ Thị Quế Hương",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Đỗ Thị Quỳnh Như",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Hà Anh Triết",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Hà Mạnh Tài",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Hà Phú Thịnh",
+    "department": "Ban Lãnh đạo"
+  },
+  {
+    "name": "Hà Thị Tuệ",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Hạ Văn Thương",
+    "department": "Tổ Kinh doanh Địa bàn Trà Bồng"
+  },
+  {
+    "name": "Hà Vũ Thuận",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Hoàng Duy Hưng",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Hoàng Khắc Cường",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Hoàng Thái Duy",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Hoàng Thị Ánh Hằng",
+    "department": "Tổ Kinh doanh Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Hoàng Thị Minh Việt",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Hồ Đức Thắng",
+    "department": "Tổ Kinh doanh Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Hồ Hoàng Nam",
+    "department": "Tổ Kỹ thuật Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Hồ Quốc Cường",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Hồ Quốc Triệu",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Hồ Sĩ Hùng",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Hồ Thị Xuân Nga",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Hồ Văn Điệp",
+    "department": "Tổ Kỹ thuật Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Hồ Xuân Lợi",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Huỳnh Anh Nhật",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Huỳnh Đỗ Quốc Huy",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Huỳnh Kim Kiên",
+    "department": "Tổ Kinh doanh Địa bàn Tu Mơ Rông"
+  },
+  {
+    "name": "Huỳnh Lê Đại Ngọc",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Huỳnh Mai",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Huỳnh Ngọc Châu",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Huỳnh Ngọc Tấn",
+    "department": "Tổ Kinh doanh Địa bàn IaHDrai"
+  },
+  {
+    "name": "Huỳnh Ngọc Thiện",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Huỳnh Ngọc Tuyên",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Huỳnh Ngọc Vy",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Huỳnh Quang Chương",
+    "department": "Tổ Kinh doanh Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Huỳnh Quang Lâm",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Huỳnh Quốc Tuấn",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Huỳnh Thị Hiền",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Huỳnh Thị Ly Na",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Huỳnh Thị Mỹ Linh",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Huỳnh Thị Thanh Huyền",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Huỳnh Thị Thu Hiền",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Huỳnh Thị Vũ Minh",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Huỳnh Thị Yến Loan",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Huỳnh Thiệp",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Huỳnh Thọ",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Huỳnh Trình",
+    "department": "Tổ Kỹ thuật Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Huỳnh Văn Vĩnh",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Khấu Ngọc Sâm",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "La Thị Bích Thương",
+    "department": "Tổ Outbound Chăm sóc Khách hàng"
+  },
+  {
+    "name": "Lâm Ngọc Anh",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Lâm Thị Thảo Nhi",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Lâm Thị Thu Hường",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Lê Anh Sỹ",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Lê Cao Trung",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Lê Công Quyền",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Lê Duy Ngọc",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Lê Hoàng Vũ",
+    "department": "Ban Lãnh đạo"
+  },
+  {
+    "name": "Lê Huấn",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Lê Hữu Nghĩa",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Lê Hữu Trí",
+    "department": "Tổ Hạ tầng Cẩm Thành"
+  },
+  {
+    "name": "Lê Khắc Anh Đạo",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Lê Minh Phú",
+    "department": "Tổ Hạ tầng Tư Nghĩa"
+  },
+  {
+    "name": "Lê Minh Triển",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Lê Nam Hải",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Lê Nam Việt",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Lê Ngọc Muôn",
+    "department": "Tổ Kinh doanh Địa bàn IaHDrai"
+  },
+  {
+    "name": "Lê Ngọc Phong",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Lê Ngọc Phú",
+    "department": "Tổ Outbound Chăm sóc Khách hàng"
+  },
+  {
+    "name": "Lê Ngọc Thạch",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Lê Nhiên",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Lê Nữ Yến Phượng",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Lê Phương Đông",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Lê Quang Duy",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Lê Quốc Hưng",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Lê Quyết Chí",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Lê Tất Đắc",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Lê Thái Hoàng Hà",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Lê Thanh Cường",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Lê Thanh Hà",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Lê Thanh Hậu",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Lê Thanh Phương",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Lê Thị Bích Ngọc",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Lê Thị Bích Phương",
+    "department": "Tổ Kinh doanh Online"
+  },
+  {
+    "name": "Lê Thị Duy Huệ",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Lê Thị Hương",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Lê Thị Lan Anh",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Lê Thị Lý Thủy",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Lê Thị Nga",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Lê Thị Thanh Thu",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Lê Thị Thúy Liễu",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Lê Tiếng",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Lê Văn Dũng",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Lê Văn Dũng",
+    "department": "Tổ Kinh doanh Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Lê Văn Minh",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Lê Văn Pha",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Lê Văn Quốc",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Lê Văn Quyết",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Lê Văn Sa",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Lê Văn Tân",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Lê Văn Thạch",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Lê Viết Dũng",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Lê Việt Trung",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Lê Xuân Nghị",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Lê Xuân Quân",
+    "department": "Tổ Kinh doanh Địa bàn Kon Plông"
+  },
+  {
+    "name": "Lương Hứa Thị Diệu Linh",
+    "department": "Tổ Outbound Chăm sóc Khách hàng"
+  },
+  {
+    "name": "Lương Hữu Hiến",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Lương Hữu Minh Quang",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Lưu Vĩnh Tuấn",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Lý Thủy Tiên",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Lý Văn Hoàng",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Mai Xuân Việt",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nghiêm Thị Thùy Dương",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Ngô Ngọc Hải",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Ngô Nhạc",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Ngô Văn Cường",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Ngô Xuân Vũ",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Nguyễn Anh Dũng",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Anh Quân",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Anh Tuấn",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Nguyễn Anh Tuấn",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Bảo Quốc",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Bình",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Chí Linh",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Công Hòa",
+    "department": "Tổ Kỹ thuật Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Nguyễn Cường Trú",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Duy Chúc",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Duy Dương",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Duy Khiêm",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Nguyễn Duy Lân",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Duy Phương",
+    "department": "Tổ Kinh doanh Online"
+  },
+  {
+    "name": "Nguyễn Duy Tiến",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Nguyễn Duy Văn",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Nguyễn Duy Vinh",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Đắc Tài",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Đặng Thúy Trâm",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Đình Tín",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Đức Dũng",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Đức Huy",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Đức Minh",
+    "department": "Tổ Kỹ thuật Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Nguyễn Đức Thành",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Nguyễn Đức Thế",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Nguyễn Đức Toàn",
+    "department": "Ban Lãnh đạo"
+  },
+  {
+    "name": "Nguyễn Hà Trí Đức",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Nguyễn Hải Nam",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Nguyễn Hạnh Vũ",
+    "department": "Tổ Hạ tầng Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Hoa Quỳnh",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Nguyễn Hoài Duyên",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Hoàng Diệu",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Hoàng Lâm",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Hồng Công Phi",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Hồng Hải",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Hồng Kỳ",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Nguyễn Hồng Quang",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Hồng Trãi",
+    "department": "Tổ Hạ tầng Tư Nghĩa"
+  },
+  {
+    "name": "Nguyễn Hùng Hưng",
+    "department": "Tổ Kỹ thuật Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Nguyễn Hùng Linh",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Hùng Thanh",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Nguyễn Hữu Đức",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Hữu Hiện",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Hữu Khoa",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Hữu Quyết",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Hữu Tiến",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Nguyễn Hữu Tịnh",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Hữu Xin",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Kế Mạnh Khải",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Nguyễn Khánh Nghĩa",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Khắc Thuận",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Nguyễn Kim Hoàn",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Kim Tín",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Nguyễn Lâm Sơn",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Nguyễn Lê Danh",
+    "department": "Tổ Kỹ thuật Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Nguyễn Lê Trân",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Linh Vũ",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Lương Ân",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Mạnh Luân",
+    "department": "Tổ Kinh doanh Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Nguyễn Minh Mẫn",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Minh Ngọc Bích",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Minh Việt",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Nguyễn Ngọc Định",
+    "department": "Tổ Kỹ thuật Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Nguyễn Ngọc Lang",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Ngọc Linh",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Ngọc Thảo",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Ngọc Thặng",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Nguyễn Nhất",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Nguyễn Nho Túy",
+    "department": "Ban Lãnh đạo"
+  },
+  {
+    "name": "Nguyễn Phi Út",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Phi Yến",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Nguyễn Phú Phúc",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Phượng Vỹ",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Quang Cường",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Quang Minh",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Nguyễn Quang Sang",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Quốc Hải",
+    "department": "Tổ Chăm sóc Khách hàng Online"
+  },
+  {
+    "name": "Nguyễn Quốc Hưng",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Tăng Quốc Chinh",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Tấn Chín",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Tấn Danh",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Tấn Gia",
+    "department": "Tổ Hạ tầng Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Tấn Quý",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Nguyễn Tấn Sửu",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Tấn Tài",
+    "department": "Tổ Kỹ thuật Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Tấn Toàn",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Tấn Trung",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Thái Bảo",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Thái Sơn",
+    "department": "Tổ Kinh doanh Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Nguyễn Thanh Cảnh",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Thành Chung",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Nguyễn Thanh Dũng",
+    "department": "Tổ Kinh doanh Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Nguyễn Thanh Hiền",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Thanh Hiệp",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Nguyễn Thanh Hưng",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Nguyễn Thành Phương",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Nguyễn Thanh Quốc",
+    "department": "Tổ Hạ tầng Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Thanh Tiền",
+    "department": "Tổ Kỹ thuật Địa bàn Trà Bồng - Tây Trà"
+  },
+  {
+    "name": "Nguyễn Thanh Tùng",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Nguyễn Thanh Tuyền",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Thế Hiển",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Anh Thơ",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Nguyễn Thị Bé Út",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Nguyễn Thị Chung",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Thị Cường",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Nguyễn Thị Dung",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Duyên",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Hạnh",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Nguyễn Thị Hoài Thanh",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Nguyễn Thị Hoàng Yến",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Hồng Thanh",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Thị Huệ",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Huyền",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Hương Trà",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Kiều Linh",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Thị Kim Liên",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Kim Thảo",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Nguyễn Thị Kim Tính",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Kim Tuyền",
+    "department": "Tổ Kinh doanh Địa bàn Trà Bồng"
+  },
+  {
+    "name": "Nguyễn Thị Lê",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Mai Trâm",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Nguyễn Thị Minh Thoa",
+    "department": "Tổ Kinh doanh Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Mỹ Thuận",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Thị Mỹ Trà",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Thị Mỹ Tú",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Thị Ngọc Ngà",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Thị Như Phương",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Thị Như Quỳnh",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Thị Như Quỳnh",
+    "department": "Tổ Kinh doanh Địa bàn Kon Plông"
+  },
+  {
+    "name": "Nguyễn Thị Nở",
+    "department": "Tổ Kinh doanh Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Phong Lam",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Nguyễn Thị Phương Dung",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Phương Thuận",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Thị Tâm",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Tâm",
+    "department": "Tổ Kinh doanh Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Hải",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Hiền",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Huyền",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Tâm",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Thúy",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Nguyễn Thị Thanh Truyền",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Thị Thắm",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Thơm",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Thị Thu",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Nguyễn Thị Thu Hạnh",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Nguyễn Thị Thu Hiền",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Nguyễn Thị Thu Hòa",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Nguyễn Thị Thu Huyền",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Nguyễn Thị Thu Trà",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Thu Trang",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Thuận",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Nguyễn Thị Thục Uyên",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Thị Thúy Loan",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Nguyễn Thị Thùy Nương",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Nguyễn Thị Uyên",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Thị Xuân",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Nguyễn Thị Xuân Trà",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Thiện Yên",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Thu Hiền",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Thúc Siêu",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Nguyễn Tiến Dũng",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Nguyễn Tú Nam",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Nguyễn Tuấn Anh",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Nguyễn Văn Bảo",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Nguyễn Văn Chí",
+    "department": "Tổ Kinh doanh Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Nguyễn Văn Cường",
+    "department": "Tổ Kỹ thuật Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Nguyễn Văn Hà",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Nguyễn Văn Khoa",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Nguyễn Văn Lãm",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Nguyễn Văn Linh",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Văn Long",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Văn Lợi",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Nguyễn Văn Phụng",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Văn Sơn",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Nguyễn Văn Thiện",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Văn Thông",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Nguyễn Văn Tịnh",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Nguyễn Văn Toàn",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Văn Trà",
+    "department": "Tổ Kỹ thuật Địa bàn Ba Tơ"
+  },
+  {
+    "name": "Nguyễn Văn Trung",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Văn Tuấn",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Văn Tùng",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Nguyễn Việt Ba",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Nguyễn Việt Hà",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Nguyễn Viết Hải",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Nguyễn Võ An Lạc",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Nguyễn Xuân Hoàng",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Nguyễn Xuân Quế",
+    "department": "Tổ Kỹ thuật Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Nguyễn Xuân Việt",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Nông Lê Hiếu",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Ông Văn Quốc Việt",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Phạm Anh Hoài Vương",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Phạm Công Tiến",
+    "department": "Tổ Kỹ thuật Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Phạm Đình Dũng",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Phạm Đoài",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Phạm Hồng Văn",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Phạm Huỳnh Tuấn Kiệt",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Phạm Hữu Khánh",
+    "department": "Tổ Kỹ thuật Địa bàn Trà Bồng - Tây Trà"
+  },
+  {
+    "name": "Phạm Hữu Tình",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Phạm Minh Vương",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Phạm Ngọc Luyến",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Phạm Ngọc Nam",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Phạm Ngọc Thắng",
+    "department": "Tổ Kinh doanh Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Phạm Nữ Mỹ Lệ",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Phạm Phúc Triệu Quang",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Phạm Quốc Hưng",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Phạm Tấn Thành",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Phạm Thái Đức",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Phạm Thị Hoàng Yến",
+    "department": "Nhóm Tổng hợp"
+  },
+  {
+    "name": "Phạm Thị Kim Ngọc",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Phạm Thị Minh Hằng",
+    "department": "Tổ Kinh doanh Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Phạm Thị Minh Hương",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Phạm Thị Minh Viễn",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phạm Thị Ngọc Thùy",
+    "department": "Tổ Kinh doanh Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Phạm Thị Thu Hằng",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phạm Thị Thu Huyền",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Phạm Trần Minh Thư",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phạm Trần Vũ",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Phạm Trung Thiện",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phạm Văn Cài",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Phạm Văn Miền",
+    "department": "Tổ Kỹ thuật Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Phạm Văn Tâm",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Phạm Văn Thanh",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Phạm Văn Thoại",
+    "department": "Tổ Kỹ thuật Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Phạm Xuân Quang",
+    "department": "Tổ Kỹ thuật Địa bàn Trà Bồng - Tây Trà"
+  },
+  {
+    "name": "Phạm Xuân Thắng",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Phan Dương Quốc",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Phan Đình Tài",
+    "department": "Tổ Hạ tầng Cẩm Thành"
+  },
+  {
+    "name": "Phan Hoàng Long",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Phan Mai Hương Ly",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Phan Minh Phát",
+    "department": "Tổ Hạ tầng Cẩm Thành"
+  },
+  {
+    "name": "Phan Nghĩa Phú",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Phan Nguyễn Hồng Vũ",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Phan Quang Trưởng",
+    "department": "Tổ Hạ tầng Sơn Tịnh"
+  },
+  {
+    "name": "Phan Thanh Lai",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Phan Thanh Lập",
+    "department": "Tổ Hạ tầng Đức Phổ"
+  },
+  {
+    "name": "Phan Thanh Tuấn",
+    "department": "Tổ Hạ tầng Kon Tum"
+  },
+  {
+    "name": "Phan Thị Ánh Hồng",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Phan Thị Đức Hoà",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Phan Thị Minh Tâm",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Phan Thị Mỹ Nhân",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Phan Thị Nhi",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phan Thị Thanh Nhàn",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Phan Thị Thu Thảo",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Phan Thị Thùy",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Glei"
+  },
+  {
+    "name": "Phan Thị Trâm",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Phan Văn Bình",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Phan Văn Lâm",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Phan Văn Quang",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Phùng Thị Thảo Ly",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Phùng Văn Phước",
+    "department": "Tổ Kỹ thuật Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Quách Văn Hiền",
+    "department": "Tổ Kỹ thuật Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Sa Thị My",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Tạ Đình Thái",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Tạ Ngọc Quỳnh",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Tạ Thị Tươi",
+    "department": "Tổ Kinh doanh Online"
+  },
+  {
+    "name": "Thái Công Vinh",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Thái Nguyễn Duy Phương",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Thái Thị Quỳnh Hoa",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Thiều Quang Thạnh",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Tôn Nhật Thư",
+    "department": "Tổ Kinh doanh Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Tôn Nữ Hồng Nhung",
+    "department": "Tổ Giao dịch viên"
+  },
+  {
+    "name": "Tôn Thị Nam Sa",
+    "department": "Tổ Khai thác Hệ thống Quảng Ngãi"
+  },
+  {
+    "name": "Trang Ngọc Vũ",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Trần Anh Tú",
+    "department": "Phòng Khách hàng Doanh nghiệp Kon Tum"
+  },
+  {
+    "name": "Trần Anh Tuấn",
+    "department": "Tổ Kỹ thuật Địa bàn Trà Bồng - Tây Trà"
+  },
+  {
+    "name": "Trần Bỉnh Cường",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trần Bột",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Trần Châu Ân",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Trần Đại Hoàng Phong",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Trần Đình Hải",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Trần Đức Chính",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Trần Đức Hạnh",
+    "department": "Tổ Hạ tầng Tư Nghĩa"
+  },
+  {
+    "name": "Trần Đức Hoa",
+    "department": "Tổ Kỹ thuật Địa bàn Lý Sơn"
+  },
+  {
+    "name": "Trần Đức Khiêm",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Trần Đức Lợi",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Trần Đức Nam",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Trần Đức Nguyên",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Trần Đức Vinh",
+    "department": "Tổ Hạ tầng Bình Sơn"
+  },
+  {
+    "name": "Trần Hoài Nam",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Trần Hoàng Dũng",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Trần Kim Thảo",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Trần Lê Minh Hùng",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Trần Mạnh Nguyên",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Trần Minh Chính",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Minh Đức",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Trần Minh Hoàng",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Trần Minh Luân",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Trần Minh Trung",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Trần Ngọc Thiện",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Trần Nguyễn Khánh Huyền",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Như Thạch",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Trần Phi An",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Trần Phúc Toàn",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Trần Quang Thụy",
+    "department": "Tổ Hạ tầng Cẩm Thành"
+  },
+  {
+    "name": "Trần Quang Xin",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Trần Quốc Hùng",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Trần Quốc Toản",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Trần Quyết Thắng",
+    "department": "Tổ Kỹ thuật Địa bàn Ia H’Drai"
+  },
+  {
+    "name": "Trần Thanh Phong",
+    "department": "Tổ Kỹ thuật Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Trần Thế Vinh",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Trần Thị Anh Thư",
+    "department": "Phòng Khách hàng Doanh nghiệp Quảng Ngãi"
+  },
+  {
+    "name": "Trần Thị Bích Hạnh",
+    "department": "Tổ Outbound Telesale Kon Tum"
+  },
+  {
+    "name": "Trần Thị Duy Phương",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Trần Thị Hiền",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Hồng",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Huyền My",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Hương Ly",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Trần Thị Kim Loan",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Trần Thị Kim Thư",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Trần Thị Lệ Quyên",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Minh Anh",
+    "department": "Tổ Kinh doanh Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Trần Thị Mỹ Hạnh",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trần Thị Mỹ Phương",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Trần Thị Như Quỳnh",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Như Quỳnh",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Phương Thoa",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trần Thị Quyên",
+    "department": "Tổ Kinh doanh Địa bàn Đăk Hà"
+  },
+  {
+    "name": "Trần Thị Thanh Huyền",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trần Thị Thanh Lê",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Trần Thị Thanh Thương",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Hà - Sơn Tây"
+  },
+  {
+    "name": "Trần Thị Thu Hải",
+    "department": "Tổ Kinh doanh Địa bàn Nghĩa Hành - Minh Long"
+  },
+  {
+    "name": "Trần Thị Thúy Liễu",
+    "department": "Tổ Kinh doanh Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Trần Thị Uyên Thảo",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Trần Thị Việt",
+    "department": "Tổ Kinh doanh Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Trần Văn Đồng",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trần Văn Hạnh",
+    "department": "Tổ Kỹ thuật Địa bàn Bắc Kon Tum"
+  },
+  {
+    "name": "Trần Văn Nhân",
+    "department": "Tổ Khai thác Hệ thống Kon Tum"
+  },
+  {
+    "name": "Trần Văn Sơn",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Trần Văn Thắng",
+    "department": "Tổ Hạ tầng Bờ Y"
+  },
+  {
+    "name": "Trần Việt Hữu",
+    "department": "Tổ Kỹ thuật Địa bàn Mộ Đức"
+  },
+  {
+    "name": "Triệu Quốc Toàn",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Trịnh Anh Tú",
+    "department": "Tổ Kỹ thuật Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Trịnh Thị Thu Hà",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Trịnh Thị Thu Hà",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Trịnh Trọng Hải",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Trịnh Vương Trình",
+    "department": "Tổ Kỹ thuật Địa bàn Ia H’Drai"
+  },
+  {
+    "name": "Trương Hiếu Nghĩa",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Trương Nhật Linh",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Trương Nhật Thái",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Trương Thị Thịnh",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Trương Trọng Nghĩa",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Trương Văn Tỵ",
+    "department": "Tổ Kinh doanh Dịch vụ số"
+  },
+  {
+    "name": "Từ Đức Dân",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Từ Trang Nghiêm",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Võ Duy Hoàng",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Võ Đặng Ngọc Giả",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Võ Hồng Hòa",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Võ Huỳnh Ngọc Thịnh",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Võ Minh Hiền",
+    "department": "Tổ Kỹ thuật Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Võ Ngọc Dũng",
+    "department": "Tổ Hạ tầng Măng Đen"
+  },
+  {
+    "name": "Võ Ngọc Hải",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Võ Ngọc Tiên",
+    "department": "Tổ Kỹ thuật Địa bàn Dung Quất"
+  },
+  {
+    "name": "Võ Nhật Tuấn",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Võ Nữ Hạnh Nhi",
+    "department": "Tổ Outbound Chăm sóc Khách hàng"
+  },
+  {
+    "name": "Võ Quang Kha",
+    "department": "Tổ Kỹ thuật Địa bàn Đông Cẩm Thành"
+  },
+  {
+    "name": "Võ Quỳnh Châu",
+    "department": "Tổ Kinh doanh Địa bàn Nam Kon Tum"
+  },
+  {
+    "name": "Võ Tấn Phúc",
+    "department": "Tổ Kỹ thuật Địa bàn Tư Nghĩa"
+  },
+  {
+    "name": "Võ Tấn Vương",
+    "department": "Tổ Kỹ thuật Địa bàn Kon Rẫy"
+  },
+  {
+    "name": "Võ Thanh Hoá",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Võ Thanh Long",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Võ Thành Thuần",
+    "department": "Ban Giám đốc"
+  },
+  {
+    "name": "Võ Thị Gia Hân",
+    "department": "Tổ Kinh doanh Địa bàn Cẩm Thành"
+  },
+  {
+    "name": "Võ Thị Kiều Vy",
+    "department": "Phòng Điều hành kinh doanh"
+  },
+  {
+    "name": "Võ Thị Kim Hạnh",
+    "department": "Phòng Kế toán - Kế hoạch"
+  },
+  {
+    "name": "Võ Thị Ngọc Hà",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Võ Thị Thanh",
+    "department": "Tổ Kinh doanh Địa bàn Kon Plông"
+  },
+  {
+    "name": "Võ Thị Thu Huyền",
+    "department": "Phòng Nhân sự - Tổng hợp"
+  },
+  {
+    "name": "Võ Thị Thu Thúy",
+    "department": "Tổ Tổng hợp"
+  },
+  {
+    "name": "Võ Thị Thu Trinh",
+    "department": "Tổ Kinh doanh Địa bàn Sơn Tịnh"
+  },
+  {
+    "name": "Võ Thị Thúy An",
+    "department": "Tổ Kinh doanh Địa bàn Đức Phổ"
+  },
+  {
+    "name": "Võ Thị Thúy Diễm",
+    "department": "Tổ Outbound Telesale Quảng Ngãi"
+  },
+  {
+    "name": "Võ Văn Đạt",
+    "department": "Tổ Kinh doanh Địa bàn Bình Sơn"
+  },
+  {
+    "name": "Võ Văn Tân",
+    "department": "Tổ Kỹ thuật Địa bàn Tây Cẩm Thành"
+  },
+  {
+    "name": "Võ Việt Hiếu",
+    "department": "Tổ Giải pháp Quảng Ngãi"
+  },
+  {
+    "name": "Vũ Hải Nam",
+    "department": "Tổ Kỹ thuật Địa bàn Đăk Tô"
+  },
+  {
+    "name": "Vũ Ngọc Quang",
+    "department": "Phòng Kỹ thuật - Đầu tư"
+  },
+  {
+    "name": "Vũ Văn Mùi",
+    "department": "Tổ Kinh doanh Địa bàn Sa Thầy"
+  },
+  {
+    "name": "Vũ Văn Quang",
+    "department": "Tổ Kỹ thuật Địa bàn Kon Plông"
+  },
+  {
+    "name": "Vũ Xuân Cương",
+    "department": "Tổ Giải pháp Kon Tum"
+  },
+  {
+    "name": "Vy Tấn Công",
+    "department": "Nhóm Kinh doanh, Hỗ trợ"
+  },
+  {
+    "name": "Y BÈ",
+    "department": "Tổ Kinh doanh Địa bàn Ngọc Hồi"
+  },
+  {
+    "name": "Y Nẵng",
+    "department": "Tổ Kinh doanh Địa bàn Sa Thầy"
+  }
+]

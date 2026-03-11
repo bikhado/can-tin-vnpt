@@ -34,10 +34,12 @@
     <div class="card">
       <div class="card-title">Nhân viên</div>
       <div class="form-group">
-        <label class="form-label" for="employeeSelect">Chọn tên nhân viên</label>
-        <select class="form-control" id="employeeSelect">
-          <option value="">-- Chọn nhân viên --</option>
-        </select>
+        <label class="form-label">Chọn tên nhân viên</label>
+        <button type="button" class="form-control emp-picker-btn" id="empPickerBtn" onclick="openEmpPicker()">
+          <span id="empPickerText" class="emp-picker-placeholder">-- Bấm để chọn nhân viên --</span>
+          <span class="emp-picker-arrow">▼</span>
+        </button>
+        <input type="hidden" id="employeeSelect" value="">
       </div>
 
       <div class="form-group">
@@ -48,6 +50,21 @@
         </div>
       </div>
     </div>
+
+  <!-- Employee Picker Modal -->
+  <div class="emp-modal-overlay" id="empModal">
+    <div class="emp-modal">
+      <div class="emp-modal-header">
+        <h3>👤 Chọn nhân viên</h3>
+        <button class="emp-modal-close" onclick="closeEmpPicker()">✕</button>
+      </div>
+      <div class="emp-modal-search">
+        <input type="text" class="form-control" id="empSearchInput" placeholder="🔍  Tìm tên hoặc phòng ban..." oninput="filterEmployees()">
+      </div>
+      <div class="emp-modal-count" id="empCount">0 nhân viên</div>
+      <div class="emp-modal-list" id="empList"></div>
+    </div>
+  </div>
 
     <!-- Deadline Alert -->
     <div id="deadlineAlert" class="alert alert-warning hidden">

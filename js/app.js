@@ -132,12 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners
     dateInput.addEventListener('change', onDateChange);
-    document.getElementById('employeeSelect').addEventListener('change', onSelectionChange);
 
     // Init date display
     initDateDisplay('dateInput', 'dateInputDisplay');
 
-    // Load employees
+    // Load employees from local JSON
     loadEmployees();
     // Trigger initial load
     onDateChange();
@@ -146,24 +145,81 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadEmployees() {
     showLoading('👨‍💼', 'Chờ chút bạn iưuưu~\nĐang tải danh sách nhân viên...');
     try {
-        const data = await apiGet('employees');
-        if (data.status === 'ok') {
-            employees = data.data;
-            const select = document.getElementById('employeeSelect');
-            employees.forEach(emp => {
-                const opt = document.createElement('option');
-                opt.value = emp.name;
-                opt.textContent = `${emp.name} — ${emp.department}`;
-                select.appendChild(opt);
-            });
-        }
+        const resp = await fetch('data/employees.json');
+        employees = await resp.json();
+        renderEmployeeList(employees);
     } catch (e) {
         console.error('Failed to load employees:', e);
-        // Show offline-friendly message
         showToast('Không thể tải danh sách nhân viên', 'error');
     } finally {
         hideLoading();
     }
+}
+
+function getInitials(name) {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    return name.substring(0, 2).toUpperCase();
+}
+
+function renderEmployeeList(list) {
+    const container = document.getElementById('empList');
+    container.innerHTML = '';
+    list.forEach(emp => {
+        const row = document.createElement('div');
+        row.className = 'emp-row';
+        row.onclick = () => selectEmployee(emp);
+        row.innerHTML = `
+            <div class="emp-avatar">${getInitials(emp.name)}</div>
+            <div class="emp-info">
+                <div class="emp-name">${emp.name}</div>
+                <div class="emp-dept">${emp.department}</div>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+    document.getElementById('empCount').textContent = list.length + ' nhân viên';
+}
+
+function openEmpPicker() {
+    document.getElementById('empModal').classList.add('show');
+    document.getElementById('empSearchInput').value = '';
+    renderEmployeeList(employees);
+    setTimeout(() => document.getElementById('empSearchInput').focus(), 300);
+}
+
+function closeEmpPicker() {
+    document.getElementById('empModal').classList.remove('show');
+}
+
+function filterEmployees() {
+    const query = document.getElementById('empSearchInput').value.toLowerCase().trim();
+    if (!query) {
+        renderEmployeeList(employees);
+        return;
+    }
+    const filtered = employees.filter(emp =>
+        emp.name.toLowerCase().includes(query) ||
+        emp.department.toLowerCase().includes(query)
+    );
+    renderEmployeeList(filtered);
+}
+
+function selectEmployee(emp) {
+    document.getElementById('employeeSelect').value = emp.name;
+    const pickerBtn = document.getElementById('empPickerBtn');
+    const pickerText = document.getElementById('empPickerText');
+    pickerText.textContent = emp.name + ' — ' + emp.department;
+    pickerBtn.classList.add('selected');
+    closeEmpPicker();
+
+    // Find department for this employee
+    const found = employees.find(e => e.name === emp.name);
+    if (found) {
+        pickerBtn.dataset.department = found.department;
+    }
+
+    onSelectionChange();
 }
 
 function onDateChange() {
