@@ -384,6 +384,44 @@ select.form-control {
   margin-top: 2px;
 }
 
+/* Breakfast Styling */
+.meal-check.meal-breakfast {
+  background: linear-gradient(to right, #ffffff, #fffdf0);
+}
+
+.meal-check.meal-breakfast.checked {
+  border-color: #fab005;
+  background: #fff9db;
+}
+
+.meal-check.meal-breakfast.checked .check-box {
+  background: #fab005;
+  border-color: #fab005;
+}
+
+.meal-check.meal-breakfast .meal-type {
+  color: #e67700;
+}
+
+/* Lunch Styling */
+.meal-check.meal-lunch {
+  background: linear-gradient(to right, #ffffff, #f1fdfa);
+}
+
+.meal-check.meal-lunch.checked {
+  border-color: var(--accent-500);
+  background: #e6fffa;
+}
+
+.meal-check.meal-lunch.checked .check-box {
+  background: var(--accent-500);
+  border-color: var(--accent-500);
+}
+
+.meal-check.meal-lunch .meal-type {
+  color: var(--accent-600);
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;

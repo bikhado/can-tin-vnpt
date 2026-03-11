@@ -418,19 +418,19 @@ function renderWeeklyCalendar(weeklyMenu, empRegs, overrideCutoff) {
         meals.className = 'day-meals';
 
         meals.innerHTML = `
-            <label class="meal-check ${bChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
+            <label class="meal-check meal-breakfast ${bChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
               <input type="checkbox" class="cb-breakfast" value="${dateStr}" ${bChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''}>
               <div class="check-box"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></div>
               <div class="meal-info">
-                <div class="meal-type">Bữa sáng</div>
+                <div class="meal-type">🌅 Bữa sáng</div>
                 <div class="meal-menu">${dayMenu.breakfast || '—'}</div>
               </div>
             </label>
-            <label class="meal-check ${lChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
+            <label class="meal-check meal-lunch ${lChecked} ${isLocked ? 'meal-disabled' : ''}" onclick="if(!${isLocked}) toggleMeal(this)">
               <input type="checkbox" class="cb-lunch" value="${dateStr}" ${lChecked ? 'checked' : ''} ${isLocked ? 'disabled' : ''}>
               <div class="check-box"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg></div>
               <div class="meal-info">
-                <div class="meal-type">Bữa trưa</div>
+                <div class="meal-type">☀️ Bữa trưa</div>
                 <div class="meal-menu">${dayMenu.lunch || '—'}</div>
               </div>
             </label>

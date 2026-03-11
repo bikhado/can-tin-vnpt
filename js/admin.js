@@ -286,6 +286,7 @@ async function executePurgeMenu() {
     const spinner = document.getElementById('btnPurgeSpinner');
     btnText.classList.add('hidden');
     spinner.classList.remove('hidden');
+    showLoading('🗑️', 'Chờ chút bạn iưuưu~\nĐang dọn dẹp dữ liệu...');
 
     try {
         const result = await apiPost('purge_menu', {
