@@ -172,6 +172,27 @@ async function loadEmployees() {
         depts = [...new Set(employees.map(e => e.department))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
 
         renderPickerList();
+
+        // ---- Restore last selected employee ----
+        const saved = localStorage.getItem('canteen_last_employee');
+        if (saved) {
+            try {
+                const emp = JSON.parse(saved);
+                // Verify still in list
+                const found = employees.find(e => e.name === emp.name);
+                if (found) {
+                    document.getElementById('employeeSelect').value = found.name;
+                    const pickerBtn = document.getElementById('empPickerBtn');
+                    const pickerText = document.getElementById('empPickerText');
+                    pickerText.textContent = found.name + ' — ' + found.department;
+                    pickerBtn.classList.add('selected');
+                    pickerBtn.dataset.department = found.department;
+                    onWeekChange();
+                }
+            } catch (err) {
+                localStorage.removeItem('canteen_last_employee');
+            }
+        }
     } catch (e) {
         console.error('Failed to load employees:', e);
         showToast('Không thể tải danh sách nhân viên', 'error');
@@ -309,6 +330,9 @@ function selectEmployee(emp) {
     if (found) {
         pickerBtn.dataset.department = found.department;
     }
+
+    // ---- Persist selection ----
+    localStorage.setItem('canteen_last_employee', JSON.stringify({ name: emp.name, department: emp.department }));
 
     onWeekChange();
 }
