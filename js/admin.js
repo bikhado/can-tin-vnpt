@@ -226,6 +226,8 @@ async function toggleOverride() {
     const checkbox = document.getElementById('overrideToggle');
     const newValue = checkbox.checked ? 'true' : 'false';
 
+    showLoading('⚙️', 'Chờ chút bạn iưuưu~\nĐang cập nhật cài đặt...');
+
     try {
         const result = await apiPost('override', {
             value: newValue,
@@ -245,5 +247,7 @@ async function toggleOverride() {
         checkbox.checked = !checkbox.checked;
         console.error('Toggle override failed:', e);
         showToast('Lỗi kết nối', 'error');
+    } finally {
+        hideLoading();
     }
 }
