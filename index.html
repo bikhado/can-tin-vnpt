@@ -34,6 +34,13 @@
     <div class="card">
       <div class="card-title">Nhân viên</div>
       <div class="form-group">
+        <label class="form-label" for="departmentSelect">Chọn phòng ban</label>
+        <select class="form-control" id="departmentSelect" onchange="onDepartmentChange()">
+          <option value="">-- Tất cả phòng ban --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label class="form-label">Chọn tên nhân viên</label>
         <button type="button" class="form-control emp-picker-btn" id="empPickerBtn" onclick="openEmpPicker()">
           <span id="empPickerText" class="emp-picker-placeholder">-- Bấm để chọn nhân viên --</span>

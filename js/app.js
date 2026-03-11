@@ -147,6 +147,17 @@ async function loadEmployees() {
     try {
         const resp = await fetch('data/employees.json');
         employees = await resp.json();
+
+        // Populate department select
+        const depts = [...new Set(employees.map(e => e.department))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
+        const deptSelect = document.getElementById('departmentSelect');
+        depts.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.textContent = d;
+            deptSelect.appendChild(opt);
+        });
+
         renderEmployeeList(employees);
     } catch (e) {
         console.error('Failed to load employees:', e);
@@ -184,7 +195,11 @@ function renderEmployeeList(list) {
 function openEmpPicker() {
     document.getElementById('empModal').classList.add('show');
     document.getElementById('empSearchInput').value = '';
-    renderEmployeeList(employees);
+
+    const dept = document.getElementById('departmentSelect').value;
+    const listToShow = dept ? employees.filter(e => e.department === dept) : employees;
+
+    renderEmployeeList(listToShow);
     setTimeout(() => document.getElementById('empSearchInput').focus(), 300);
 }
 
@@ -194,15 +209,40 @@ function closeEmpPicker() {
 
 function filterEmployees() {
     const query = document.getElementById('empSearchInput').value.toLowerCase().trim();
-    if (!query) {
-        renderEmployeeList(employees);
-        return;
+    const dept = document.getElementById('departmentSelect').value;
+
+    let filtered = employees;
+    if (dept) {
+        filtered = filtered.filter(e => e.department === dept);
     }
-    const filtered = employees.filter(emp =>
-        emp.name.toLowerCase().includes(query) ||
-        emp.department.toLowerCase().includes(query)
-    );
+
+    if (query) {
+        filtered = filtered.filter(emp =>
+            emp.name.toLowerCase().includes(query) ||
+            emp.department.toLowerCase().includes(query)
+        );
+    }
+
     renderEmployeeList(filtered);
+}
+
+function onDepartmentChange() {
+    const dept = document.getElementById('departmentSelect').value;
+    const empInput = document.getElementById('employeeSelect');
+    const pickerBtn = document.getElementById('empPickerBtn');
+    const pickerText = document.getElementById('empPickerText');
+
+    if (empInput.value && dept) {
+        const currentEmp = employees.find(e => e.name === empInput.value);
+        if (currentEmp && currentEmp.department !== dept) {
+            // Clear employee if they don't belong to newly selected department
+            empInput.value = '';
+            pickerText.textContent = '-- Bấm để chọn nhân viên --';
+            pickerBtn.classList.remove('selected');
+            pickerBtn.removeAttribute('data-department');
+            onSelectionChange();
+        }
+    }
 }
 
 function selectEmployee(emp) {
