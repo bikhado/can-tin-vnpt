@@ -481,11 +481,10 @@ async function submitRegistration() {
         const lCb = block.querySelector('.cb-lunch');
 
         if (bCb && lCb) {
-            const dateStr = bCb.value;
-            // Only send changes for valid/unlocked days
-            if (!bCb.disabled) {
+            // Only send changes if BOTH checkboxes are not disabled
+            if (!bCb.disabled && !lCb.disabled) {
                 regs.push({
-                    date: dateStr,
+                    date: bCb.value,
                     breakfast: bCb.checked ? 'yes' : 'no',
                     lunch: lCb.checked ? 'yes' : 'no'
                 });

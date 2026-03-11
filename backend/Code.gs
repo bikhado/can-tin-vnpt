@@ -62,12 +62,16 @@ function formatDateStr(date) {
     var tz = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
     return Utilities.formatDate(date, tz, 'yyyy-MM-dd');
   }
-  // If it's a string, try to normalize it
   var str = String(date).trim();
-  // Handle dd/MM/yyyy format
-  if (/^\d{2}\/\d{2}\/\d{4}$/.test(str)) {
+  // Handle dd/MM/yyyy or d/M/yyyy format
+  if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(str)) {
     var parts = str.split('/');
-    return parts[2] + '-' + parts[1] + '-' + parts[0];
+    return parts[2] + '-' + parts[1].padStart(2, '0') + '-' + parts[0].padStart(2, '0');
+  }
+  // Handle yyyy-M-d format
+  if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(str)) {
+    var parts = str.split('-');
+    return parts[0] + '-' + parts[1].padStart(2, '0') + '-' + parts[2].padStart(2, '0');
   }
   return str;
 }
@@ -412,8 +416,12 @@ function handleRegisterBatch(body) {
 
     // Cutoff validation per day
     if (overrideCutoff !== 'true' && !isBeforeCutoff(date)) {
-      skipCount++;
-      return; // Skip this day
+      // Only count as a "skip" if the user actually tried to register (selected 'yes')
+      // If they sent 'no/no', it's just a passive state from the UI, don't nag them.
+      if (breakfast === 'yes' || lunch === 'yes') {
+        skipCount++;
+      }
+      return; 
     }
 
     let found = false;
@@ -432,15 +440,21 @@ function handleRegisterBatch(body) {
 
     if (!found) {
       sheet.appendRow([date, employee, department, breakfast, lunch, new Date()]);
-      // Update local data array so we don't accidentally add duplicates in same batch if duplicate submitted (unlikely but safe)
       data.push([date, employee, department, breakfast, lunch, new Date()]);
       successCount++;
     }
   });
 
+  let message = 'Đã lưu đăng ký thành công!';
+  if (skipCount > 0) {
+    message = `Đã lưu ${successCount} ngày. Có ${skipCount} ngày bị bỏ qua do quá hạn.`;
+  } else if (successCount === 0) {
+    message = 'Không có thay đổi nào được lưu.';
+  }
+
   return jsonResponse({
     status: 'ok',
-    message: `Thành công ${successCount} ngày. Bỏ qua ${skipCount} ngày.`,
+    message: message,
     successCount,
     skipCount
   });
