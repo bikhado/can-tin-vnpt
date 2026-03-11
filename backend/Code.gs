@@ -132,9 +132,9 @@ function doGet(e) {
       case 'employees':
         return handleGetEmployees();
       case 'menu':
-        return handleGetMenu(e.parameter.date);
+        return handleGetMenu(e.parameter.date, e.parameter.week);
       case 'registrations':
-        return handleGetRegistrations(e.parameter.date);
+        return handleGetRegistrations(e.parameter.date, e.parameter.week);
       case 'summary':
         return handleGetSummary(e.parameter.week);
       case 'verify_admin':
@@ -161,10 +161,14 @@ function doPost(e) {
     const action = body.action;
 
     switch (action) {
-      case 'register':
-        return handleRegister(body);
       case 'menu':
         return handleSaveMenu(body);
+      case 'menu_batch':
+        return handleSaveMenuBatch(body);
+      case 'register':
+        return handleRegister(body);
+      case 'register_batch':
+        return handleRegisterBatch(body);
       case 'override':
         return handleOverride(body);
       case 'delete_registration':
@@ -200,15 +204,41 @@ function handleGetEmployees() {
   return jsonResponse({ status: 'ok', data: employees });
 }
 
-// GET /menu?date=
-function handleGetMenu(date) {
-  if (!date) {
-    return jsonResponse({ status: 'error', message: 'Date is required' });
+// GET /menu?date= OR /menu?week=
+function handleGetMenu(date, week) {
+  if (!date && !week) {
+    return jsonResponse({ status: 'error', message: 'Date or week is required' });
   }
 
   const sheet = getSheet(SHEET_MENU);
   const data = sheet.getDataRange().getValues();
 
+  if (week) {
+    const weekDates = getWeekDates(week);
+    const weeklyMenu = [];
+
+    weekDates.forEach(d => {
+      let found = false;
+      for (let i = 1; i < data.length; i++) {
+        if (formatDateStr(data[i][0]) === d) {
+          weeklyMenu.push({
+            date: d,
+            breakfast: data[i][1] || '',
+            lunch: data[i][2] || ''
+          });
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        weeklyMenu.push({ date: d, breakfast: '', lunch: '' });
+      }
+    });
+
+    return jsonResponse({ status: 'ok', data: weeklyMenu });
+  }
+
+  // Single date fallback
   for (let i = 1; i < data.length; i++) {
     const rowDate = formatDateStr(data[i][0]);
     if (rowDate === date) {
@@ -257,6 +287,48 @@ function handleSaveMenu(body) {
   // Add new menu
   sheet.appendRow([date, breakfast, lunch]);
   return jsonResponse({ status: 'ok', message: 'Menu created' });
+}
+
+// POST /menu_batch (admin)
+function handleSaveMenuBatch(body) {
+  if (!verifyAdmin(body.admin_key)) {
+    return jsonResponse({ status: 'error', message: 'Invalid admin key' });
+  }
+
+  const menus = body.menus; // Array of {date, breakfast, lunch}
+  if (!menus || !Array.isArray(menus)) {
+    return jsonResponse({ status: 'error', message: 'Menus array is required' });
+  }
+
+  const sheet = getSheet(SHEET_MENU);
+  const data = sheet.getDataRange().getValues();
+
+  menus.forEach(menuItem => {
+    const date = menuItem.date;
+    const breakfast = menuItem.breakfast || '';
+    const lunch = menuItem.lunch || '';
+
+    if (!date) return;
+
+    let found = false;
+    // Keep it simple: loop over to find
+    for (let i = 1; i < data.length; i++) {
+      if (formatDateStr(data[i][0]) === date) {
+        sheet.getRange(i + 1, 2).setValue(breakfast);
+        sheet.getRange(i + 1, 3).setValue(lunch);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      sheet.appendRow([date, breakfast, lunch]);
+      // Update our local data array length reference safely by pushing a dummy row
+      data.push([date, breakfast, lunch]);
+    }
+  });
+
+  return jsonResponse({ status: 'ok', message: 'Weekly menu saved successfully' });
 }
 
 // POST /register
@@ -311,19 +383,86 @@ function handleRegister(body) {
   return jsonResponse({ status: 'ok', message: 'Registration created' });
 }
 
-// GET /registrations?date=
-function handleGetRegistrations(date) {
-  if (!date) {
-    return jsonResponse({ status: 'error', message: 'Date is required' });
+// POST /register_batch
+function handleRegisterBatch(body) {
+  const { employee, department, registrations } = body;
+
+  // Validate required fields
+  if (!employee || !department || !Array.isArray(registrations)) {
+    return jsonResponse({ status: 'error', message: 'Employee, department and registrations array are required' });
+  }
+
+  const sheet = getSheet(SHEET_REGISTRATIONS);
+  const data = sheet.getDataRange().getValues();
+  const overrideCutoff = getSetting('override_cutoff');
+
+  let successCount = 0;
+  let skipCount = 0;
+
+  registrations.forEach(reg => {
+    const date = reg.date;
+    const breakfast = reg.breakfast || 'no';
+    const lunch = reg.lunch || 'no';
+
+    if (!date) return;
+    if (isWeekend(date)) return;
+
+    // Cutoff validation per day
+    if (overrideCutoff !== 'true' && !isBeforeCutoff(date)) {
+      skipCount++;
+      return; // Skip this day
+    }
+
+    let found = false;
+    for (let i = 1; i < data.length; i++) {
+      if (formatDateStr(data[i][0]) === date && data[i][1] === employee) {
+        // Update
+        sheet.getRange(i + 1, 3).setValue(department);
+        sheet.getRange(i + 1, 4).setValue(breakfast);
+        sheet.getRange(i + 1, 5).setValue(lunch);
+        sheet.getRange(i + 1, 6).setValue(new Date());
+        found = true;
+        successCount++;
+        break;
+      }
+    }
+
+    if (!found) {
+      sheet.appendRow([date, employee, department, breakfast, lunch, new Date()]);
+      // Update local data array so we don't accidentally add duplicates in same batch if duplicate submitted (unlikely but safe)
+      data.push([date, employee, department, breakfast, lunch, new Date()]);
+      successCount++;
+    }
+  });
+
+  return jsonResponse({
+    status: 'ok',
+    message: `Thành công ${successCount} ngày. Bỏ qua ${skipCount} ngày.`,
+    successCount,
+    skipCount
+  });
+}
+
+// GET /registrations?date= OR ?week=
+function handleGetRegistrations(date, week) {
+  if (!date && !week) {
+    return jsonResponse({ status: 'error', message: 'Date or week is required' });
   }
 
   const sheet = getSheet(SHEET_REGISTRATIONS);
   const data = sheet.getDataRange().getValues();
   const registrations = [];
+  
+  let targetDates = [];
+  if (week) {
+    targetDates = getWeekDates(week);
+  } else {
+    targetDates = [date];
+  }
 
   for (let i = 1; i < data.length; i++) {
     const rowDate = formatDateStr(data[i][0]);
-    if (rowDate === date) {
+    if (targetDates.includes(rowDate)) {
       registrations.push({
         date: rowDate,
         employee: data[i][1],
