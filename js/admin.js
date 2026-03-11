@@ -304,6 +304,7 @@ async function executePurgeMenu() {
     } finally {
         btnText.classList.remove('hidden');
         spinner.classList.add('hidden');
+        hideLoading();
     }
 }
 
