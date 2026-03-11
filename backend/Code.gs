@@ -57,12 +57,17 @@ function verifyAdmin(key) {
 
 function formatDateStr(date) {
   if (date instanceof Date) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const d = String(date.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
+    var tz = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
+    return Utilities.formatDate(date, tz, 'yyyy-MM-dd');
   }
-  return String(date);
+  // If it's a string, try to normalize it
+  var str = String(date).trim();
+  // Handle dd/MM/yyyy format
+  if (/^\d{2}\/\d{2}\/\d{4}$/.test(str)) {
+    var parts = str.split('/');
+    return parts[2] + '-' + parts[1] + '-' + parts[0];
+  }
+  return str;
 }
 
 function isWeekend(dateStr) {
@@ -134,6 +139,8 @@ function doGet(e) {
         return handleVerifyAdmin(e.parameter.key);
       case 'settings':
         return handleGetSetting(e.parameter.key);
+      case 'debug_menu':
+        return handleDebugMenu();
       default:
         return jsonResponse({ status: 'error', message: 'Unknown action: ' + action });
     }
@@ -376,4 +383,27 @@ function handleOverride(body) {
   const value = body.value === 'true' ? 'true' : 'false';
   setSetting('override_cutoff', value);
   return jsonResponse({ status: 'ok', message: 'Override cutoff set to ' + value });
+}
+
+// DEBUG: inspect raw menu data
+function handleDebugMenu() {
+  var sheet = getSheet(SHEET_MENU);
+  var data = sheet.getDataRange().getValues();
+  var tz = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
+  var rows = [];
+
+  for (var i = 0; i < data.length; i++) {
+    var raw = data[i][0];
+    rows.push({
+      row: i,
+      raw_value: String(raw),
+      type: typeof raw,
+      is_date: raw instanceof Date,
+      formatted: raw instanceof Date ? Utilities.formatDate(raw, tz, 'yyyy-MM-dd') : String(raw),
+      breakfast: data[i][1],
+      lunch: data[i][2]
+    });
+  }
+
+  return jsonResponse({ status: 'ok', timezone: tz, data: rows });
 }
