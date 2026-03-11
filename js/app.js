@@ -401,7 +401,7 @@ async function onSelectionChange() {
             if (existing) {
                 isEditing = true;
                 existingAlert.classList.remove('hidden');
-                btnText.textContent = 'CẬP NHẬT';
+                btnText.textContent = '💾 CẬP NHẬT';
                 document.getElementById('btnCancel').style.display = 'inline-block';
 
                 // Set checkboxes
@@ -422,7 +422,7 @@ async function onSelectionChange() {
             } else {
                 isEditing = false;
                 existingAlert.classList.add('hidden');
-                btnText.textContent = 'ĐĂNG KÝ';
+                btnText.textContent = '✅ ĐĂNG KÝ';
                 document.getElementById('btnCancel').style.display = 'none';
 
                 // Reset checkboxes
