@@ -33,14 +33,7 @@
     <!-- Employee Selection -->
     <div class="card">
       <div class="card-title">Nhân viên</div>
-      <div class="form-group">
-        <label class="form-label">Chọn phòng ban</label>
-        <button type="button" class="form-control emp-picker-btn" id="deptPickerBtn" onclick="openDeptPicker()">
-          <span id="deptPickerText" class="emp-picker-placeholder">-- Tất cả phòng ban --</span>
-          <span class="emp-picker-arrow">▼</span>
-        </button>
-        <input type="hidden" id="departmentSelect" value="">
-      </div>
+
 
       <div class="form-group">
         <label class="form-label">Chọn tên nhân viên</label>
@@ -60,26 +53,13 @@
       </div>
     </div>
 
-  <!-- Department Picker Modal -->
-  <div class="emp-modal-overlay" id="deptModal">
-    <div class="emp-modal">
-      <div class="emp-modal-header">
-        <h3>🏢 Chọn phòng ban</h3>
-        <button class="emp-modal-close" onclick="closeDeptPicker()">✕</button>
-      </div>
-      <div class="emp-modal-search">
-        <input type="text" class="form-control" id="deptSearchInput" placeholder="🔍 Tìm phòng ban..." oninput="filterDepartments()">
-      </div>
-      <div class="emp-modal-list" id="deptList"></div>
-    </div>
-  </div>
-
-  <!-- Employee Picker Modal -->
+  <!-- Unified Smart Employee Picker Modal -->
   <div class="emp-modal-overlay" id="empModal">
     <div class="emp-modal">
-      <div class="emp-modal-header">
-        <h3>👤 Chọn nhân viên</h3>
-        <button class="emp-modal-close" onclick="closeEmpPicker()">✕</button>
+      <div class="emp-modal-header" style="display: flex; gap: 12px; align-items: center;">
+        <button class="emp-modal-back" id="empModalBack" style="display:none; background:none; border:none; font-size:1.4rem; padding: 0 4px; cursor:pointer;" onclick="showDeptListView()">←</button>
+        <h3 id="empModalTitle" style="flex: 1; font-size: 1.1rem; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">👤 Phân loại theo</h3>
+        <button class="emp-modal-close" style="flex-shrink: 0;" onclick="closeEmpPicker()">✕</button>
       </div>
       <div class="emp-modal-search">
         <input type="text" class="form-control" id="empSearchInput" placeholder="🔍  Tìm tên hoặc phòng ban..." oninput="filterEmployees()">

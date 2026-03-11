@@ -168,77 +168,65 @@ function getInitials(name) {
     return name.substring(0, 2).toUpperCase();
 }
 
-function renderDeptList(list) {
-    const container = document.getElementById('deptList');
-    container.innerHTML = '';
+let currentPickerDept = null;
 
-    // Add "All departments" option
-    const allRow = document.createElement('div');
-    allRow.className = 'emp-row';
-    allRow.onclick = () => selectDepartment('');
-    allRow.innerHTML = `
-        <div class="emp-avatar" style="background: var(--gray-200); color: var(--gray-600)">🏢</div>
-        <div class="emp-info">
-            <div class="emp-name">-- Tất cả phòng ban --</div>
-        </div>
-    `;
-    container.appendChild(allRow);
-
-    list.forEach(dept => {
-        const row = document.createElement('div');
-        row.className = 'emp-row';
-        row.onclick = () => selectDepartment(dept);
-        row.innerHTML = `
-            <div class="emp-avatar" style="background: var(--primary-100); color: var(--primary-600)">🏢</div>
-            <div class="emp-info">
-                <div class="emp-name">${dept}</div>
-            </div>
-        `;
-        container.appendChild(row);
-    });
-}
-
-function openDeptPicker() {
-    document.getElementById('deptModal').classList.add('show');
-    document.getElementById('deptSearchInput').value = '';
-    renderDeptList(depts);
-    setTimeout(() => document.getElementById('deptSearchInput').focus(), 300);
-}
-
-function closeDeptPicker() {
-    document.getElementById('deptModal').classList.remove('show');
-}
-
-function filterDepartments() {
-    const query = document.getElementById('deptSearchInput').value.toLowerCase().trim();
-    if (!query) {
-        renderDeptList(depts);
-        return;
-    }
-    const filtered = depts.filter(d => d.toLowerCase().includes(query));
-    renderDeptList(filtered);
-}
-
-function selectDepartment(dept) {
-    document.getElementById('departmentSelect').value = dept;
-    const pickerBtn = document.getElementById('deptPickerBtn');
-    const pickerText = document.getElementById('deptPickerText');
-
-    if (dept) {
-        pickerText.textContent = dept;
-        pickerBtn.classList.add('selected');
-    } else {
-        pickerText.textContent = '-- Tất cả phòng ban --';
-        pickerBtn.classList.remove('selected');
-    }
-
-    closeDeptPicker();
-    onDepartmentChange();
-}
-
-function renderEmployeeList(list) {
+function renderPickerList() {
     const container = document.getElementById('empList');
+    const query = document.getElementById('empSearchInput').value.toLowerCase().trim();
+
     container.innerHTML = '';
+
+    if (query) {
+        // Global search view
+        document.getElementById('empModalTitle').textContent = '🔍 Kết quả tìm kiếm';
+        document.getElementById('empModalBack').style.display = 'none';
+
+        const filtered = employees.filter(emp =>
+            emp.name.toLowerCase().includes(query) ||
+            emp.department.toLowerCase().includes(query)
+        );
+
+        renderEmployees(filtered, container);
+        document.getElementById('empCount').textContent = filtered.length + ' kết quả';
+
+    } else if (currentPickerDept) {
+        // Department Drill-down view
+        document.getElementById('empModalTitle').textContent = currentPickerDept;
+        document.getElementById('empModalBack').style.display = 'block';
+
+        const filtered = employees.filter(emp => emp.department === currentPickerDept);
+        renderEmployees(filtered, container);
+        document.getElementById('empCount').textContent = filtered.length + ' nhân viên';
+
+    } else {
+        // Departments view
+        document.getElementById('empModalTitle').textContent = '🏢 Chọn phòng ban';
+        document.getElementById('empModalBack').style.display = 'none';
+
+        depts.forEach(dept => {
+            const count = employees.filter(e => e.department === dept).length;
+            const row = document.createElement('div');
+            row.className = 'emp-row';
+            row.onclick = () => {
+                currentPickerDept = dept;
+                document.getElementById('empSearchInput').value = '';
+                renderPickerList();
+            };
+            row.innerHTML = `
+                <div class="emp-avatar" style="background: var(--primary-100); color: var(--primary-600)">🏢</div>
+                <div class="emp-info">
+                    <div class="emp-name" style="white-space: normal; line-height: 1.3;">${dept}</div>
+                    <div class="emp-dept">${count} nhân viên</div>
+                </div>
+                <div style="color: var(--gray-400); font-size: 1.4rem; padding-left: 8px;">›</div>
+            `;
+            container.appendChild(row);
+        });
+        document.getElementById('empCount').textContent = depts.length + ' phòng ban';
+    }
+}
+
+function renderEmployees(list, container) {
     list.forEach(emp => {
         const row = document.createElement('div');
         row.className = 'emp-row';
@@ -252,17 +240,25 @@ function renderEmployeeList(list) {
         `;
         container.appendChild(row);
     });
-    document.getElementById('empCount').textContent = list.length + ' nhân viên';
+}
+
+function showDeptListView() {
+    currentPickerDept = null;
+    document.getElementById('empSearchInput').value = '';
+    renderPickerList();
 }
 
 function openEmpPicker() {
+    // Also remove the disabled styling hack from index.html if it still exists
+    const pickerBtn = document.getElementById('empPickerBtn');
+    pickerBtn.disabled = false;
+    pickerBtn.style.opacity = '1';
+    pickerBtn.style.cursor = 'pointer';
+
     document.getElementById('empModal').classList.add('show');
     document.getElementById('empSearchInput').value = '';
-
-    const dept = document.getElementById('departmentSelect').value;
-    const listToShow = dept ? employees.filter(e => e.department === dept) : employees;
-
-    renderEmployeeList(listToShow);
+    currentPickerDept = null;
+    renderPickerList();
     setTimeout(() => document.getElementById('empSearchInput').focus(), 300);
 }
 
@@ -271,41 +267,7 @@ function closeEmpPicker() {
 }
 
 function filterEmployees() {
-    const query = document.getElementById('empSearchInput').value.toLowerCase().trim();
-    const dept = document.getElementById('departmentSelect').value;
-
-    let filtered = employees;
-    if (dept) {
-        filtered = filtered.filter(e => e.department === dept);
-    }
-
-    if (query) {
-        filtered = filtered.filter(emp =>
-            emp.name.toLowerCase().includes(query) ||
-            emp.department.toLowerCase().includes(query)
-        );
-    }
-
-    renderEmployeeList(filtered);
-}
-
-function onDepartmentChange() {
-    const dept = document.getElementById('departmentSelect').value;
-    const empInput = document.getElementById('employeeSelect');
-    const pickerBtn = document.getElementById('empPickerBtn');
-    const pickerText = document.getElementById('empPickerText');
-
-    if (empInput.value && dept) {
-        const currentEmp = employees.find(e => e.name === empInput.value);
-        if (currentEmp && currentEmp.department !== dept) {
-            // Clear employee if they don't belong to newly selected department
-            empInput.value = '';
-            pickerText.textContent = '-- Bấm để chọn nhân viên --';
-            pickerBtn.classList.remove('selected');
-            pickerBtn.removeAttribute('data-department');
-            onSelectionChange();
-        }
-    }
+    renderPickerList();
 }
 
 function selectEmployee(emp) {
@@ -314,6 +276,7 @@ function selectEmployee(emp) {
     const pickerText = document.getElementById('empPickerText');
     pickerText.textContent = emp.name + ' — ' + emp.department;
     pickerBtn.classList.add('selected');
+
     closeEmpPicker();
 
     // Find department for this employee
