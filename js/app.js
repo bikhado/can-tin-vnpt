@@ -142,21 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
     onDateChange();
 });
 
+let depts = [];
+
 async function loadEmployees() {
     showLoading('👨‍💼', 'Chờ chút bạn iưuưu~\nĐang tải danh sách nhân viên...');
     try {
         const resp = await fetch('data/employees.json');
         employees = await resp.json();
 
-        // Populate department select
-        const depts = [...new Set(employees.map(e => e.department))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
-        const deptSelect = document.getElementById('departmentSelect');
-        depts.forEach(d => {
-            const opt = document.createElement('option');
-            opt.value = d;
-            opt.textContent = d;
-            deptSelect.appendChild(opt);
-        });
+        // Cache departments
+        depts = [...new Set(employees.map(e => e.department))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
 
         renderEmployeeList(employees);
     } catch (e) {
@@ -171,6 +166,74 @@ function getInitials(name) {
     const parts = name.trim().split(/\s+/);
     if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     return name.substring(0, 2).toUpperCase();
+}
+
+function renderDeptList(list) {
+    const container = document.getElementById('deptList');
+    container.innerHTML = '';
+
+    // Add "All departments" option
+    const allRow = document.createElement('div');
+    allRow.className = 'emp-row';
+    allRow.onclick = () => selectDepartment('');
+    allRow.innerHTML = `
+        <div class="emp-avatar" style="background: var(--gray-200); color: var(--gray-600)">🏢</div>
+        <div class="emp-info">
+            <div class="emp-name">-- Tất cả phòng ban --</div>
+        </div>
+    `;
+    container.appendChild(allRow);
+
+    list.forEach(dept => {
+        const row = document.createElement('div');
+        row.className = 'emp-row';
+        row.onclick = () => selectDepartment(dept);
+        row.innerHTML = `
+            <div class="emp-avatar" style="background: var(--primary-100); color: var(--primary-600)">🏢</div>
+            <div class="emp-info">
+                <div class="emp-name">${dept}</div>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+}
+
+function openDeptPicker() {
+    document.getElementById('deptModal').classList.add('show');
+    document.getElementById('deptSearchInput').value = '';
+    renderDeptList(depts);
+    setTimeout(() => document.getElementById('deptSearchInput').focus(), 300);
+}
+
+function closeDeptPicker() {
+    document.getElementById('deptModal').classList.remove('show');
+}
+
+function filterDepartments() {
+    const query = document.getElementById('deptSearchInput').value.toLowerCase().trim();
+    if (!query) {
+        renderDeptList(depts);
+        return;
+    }
+    const filtered = depts.filter(d => d.toLowerCase().includes(query));
+    renderDeptList(filtered);
+}
+
+function selectDepartment(dept) {
+    document.getElementById('departmentSelect').value = dept;
+    const pickerBtn = document.getElementById('deptPickerBtn');
+    const pickerText = document.getElementById('deptPickerText');
+
+    if (dept) {
+        pickerText.textContent = dept;
+        pickerBtn.classList.add('selected');
+    } else {
+        pickerText.textContent = '-- Tất cả phòng ban --';
+        pickerBtn.classList.remove('selected');
+    }
+
+    closeDeptPicker();
+    onDepartmentChange();
 }
 
 function renderEmployeeList(list) {
