@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let depts = [];
+let currentPickerDept = null;
 
 async function loadEmployees() {
     showLoading('👨‍💼', 'Chờ chút bạn iưuưu~\nĐang tải danh sách nhân viên...');
@@ -153,7 +154,7 @@ async function loadEmployees() {
         // Cache departments
         depts = [...new Set(employees.map(e => e.department))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
 
-        renderEmployeeList(employees);
+        renderPickerList();
     } catch (e) {
         console.error('Failed to load employees:', e);
         showToast('Không thể tải danh sách nhân viên', 'error');
@@ -168,7 +169,7 @@ function getInitials(name) {
     return name.substring(0, 2).toUpperCase();
 }
 
-let currentPickerDept = null;
+
 
 function renderPickerList() {
     const container = document.getElementById('empList');
