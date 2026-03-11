@@ -56,7 +56,9 @@ function verifyAdmin(key) {
 }
 
 function formatDateStr(date) {
-  if (date instanceof Date) {
+  // Google Apps Script quirk: instanceof Date returns false for sheet Date objects
+  // Use duck-typing check instead
+  if (date && typeof date === 'object' && typeof date.getFullYear === 'function') {
     var tz = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
     return Utilities.formatDate(date, tz, 'yyyy-MM-dd');
   }
@@ -394,12 +396,13 @@ function handleDebugMenu() {
 
   for (var i = 0; i < data.length; i++) {
     var raw = data[i][0];
+    var isDateObj = raw && typeof raw === 'object' && typeof raw.getFullYear === 'function';
     rows.push({
       row: i,
       raw_value: String(raw),
       type: typeof raw,
-      is_date: raw instanceof Date,
-      formatted: raw instanceof Date ? Utilities.formatDate(raw, tz, 'yyyy-MM-dd') : String(raw),
+      is_date: isDateObj,
+      formatted: isDateObj ? Utilities.formatDate(raw, tz, 'yyyy-MM-dd') : String(raw),
       breakfast: data[i][1],
       lunch: data[i][2]
     });
