@@ -55,9 +55,9 @@
         <div class="card-title">Quản lý thực đơn tuần</div>
         <div class="form-group">
           <label class="form-label" for="menuWeekInput">Chọn tuần</label>
-          <div class="date-wrap flex-start">
-            <input type="week" class="form-control" id="menuWeekInput" style="flex:1;">
-            <button class="btn btn-outline btn-sm ml-8" onclick="loadWeeklyMenuForEdit()" style="margin-left: 8px;">
+          <div style="display: flex; gap: 8px; align-items: stretch;">
+            <input type="week" class="form-control" id="menuWeekInput" style="flex: 1; height: 44px; margin-bottom: 0;">
+            <button class="btn btn-outline" style="height: 44px; padding: 0 16px; margin-top: 0;" onclick="loadWeeklyMenuForEdit()">
               📥 TẢI
             </button>
           </div>
@@ -122,7 +122,7 @@
       <div class="card">
         <div class="card-title">Dọn dẹp dữ liệu</div>
         <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px;">Hệ thống sẽ tự động tìm và xóa các món ăn của những tuần trước đó (tính đến trước ngày hôm nay) để bảng tính gọn gàng hơn.</p>
-        <button class="btn btn-outline" style="border-color: var(--danger-500); color: var(--danger-500);" onclick="purgeOldMenu()">
+        <button class="btn btn-outline" style="border-color: var(--danger-500); color: var(--danger-500);" onclick="showConfirmPurge()">
           <span id="btnPurgeText">🗑️ XÓA DỮ LIỆU CŨ</span>
           <div class="spinner hidden" id="btnPurgeSpinner"></div>
         </button>
@@ -162,6 +162,20 @@
 
     </div>
   </main>
+
+  <!-- Custom Confirm Modal -->
+  <div class="modal-overlay hidden" id="confirmModal">
+    <div class="modal-content">
+      <div class="modal-title">Xác nhận dọn dẹp</div>
+      <p style="margin-bottom: 24px; color: var(--gray-600); font-size: 0.95rem;">
+        Hành động này sẽ xóa vĩnh viễn các thực đơn trong danh sách (tính đến trước ngày hôm nay). Bạn có chắc chắn muốn tiếp tục?
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button class="btn btn-outline" style="flex:1" onclick="closeConfirmModal()">Hủy</button>
+        <button class="btn btn-primary" style="flex:1; background-color: var(--danger-500); color: white; border: none;" onclick="executePurgeMenu()">🗑️ Xóa</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Bottom Navigation -->
   <nav class="bottom-nav">

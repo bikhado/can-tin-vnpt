@@ -271,10 +271,16 @@ async function saveWeeklyMenu() {
     }
 }
 
-async function purgeOldMenu() {
-    if (!confirm('Hành động này sẽ xóa vĩnh viễn các thực đơn trong danh sách (tính đến trước ngày hôm nay).\n\nBạn có muốn tiếp tục?')) {
-        return;
-    }
+function showConfirmPurge() {
+    document.getElementById('confirmModal').classList.remove('hidden');
+}
+
+function closeConfirmModal() {
+    document.getElementById('confirmModal').classList.add('hidden');
+}
+
+async function executePurgeMenu() {
+    closeConfirmModal();
 
     const btnText = document.getElementById('btnPurgeText');
     const spinner = document.getElementById('btnPurgeSpinner');
