@@ -46,6 +46,26 @@ function apiPost(action, data) {
     }).then(r => r.json());
 }
 
+function initDateDisplay(inputId, displayId) {
+    const input = document.getElementById(inputId);
+    const display = document.getElementById(displayId);
+
+    if (input.value) {
+        display.textContent = formatDateVN(input.value);
+        display.classList.remove('placeholder');
+    }
+
+    input.addEventListener('change', () => {
+        if (input.value) {
+            display.textContent = formatDateVN(input.value);
+            display.classList.remove('placeholder');
+        } else {
+            display.textContent = 'dd/MM/yyyy';
+            display.classList.add('placeholder');
+        }
+    });
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
     // Check URL param for key
@@ -161,6 +181,8 @@ async function loadExistingMenu() {
         return;
     }
 
+    showLoading('🍽️', 'Chờ chút bạn iưuưu~\nĐang tải thực đơn...');
+
     try {
         const data = await apiGet('menu', { date });
         const info = document.getElementById('loadedMenuInfo');
@@ -181,6 +203,8 @@ async function loadExistingMenu() {
     } catch (e) {
         console.error('Load menu failed:', e);
         showToast('Lỗi kết nối', 'error');
+    } finally {
+        hideLoading();
     }
 }
 
