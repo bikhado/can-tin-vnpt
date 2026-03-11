@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Đăng ký suất ăn căn tin công ty">
+  <title>Đăng Ký Suất Ăn</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Header -->
+  <header class="page-header">
+    <h1>🍽️ Đăng Ký Suất Ăn</h1>
+    <p>Đăng ký bữa ăn căn tin công ty</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" id="mainContent">
+
+    <!-- Employee Selection -->
+    <div class="card">
+      <div class="card-title">Nhân viên</div>
+      <div class="form-group">
+        <label class="form-label" for="employeeSelect">Chọn tên nhân viên</label>
+        <select class="form-control" id="employeeSelect">
+          <option value="">-- Chọn nhân viên --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="dateInput">Ngày đăng ký</label>
+        <div class="date-wrap">
+          <input type="date" class="form-control" id="dateInput">
+          <span class="date-display placeholder" id="dateInputDisplay">dd/MM/yyyy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deadline Alert -->
+    <div id="deadlineAlert" class="alert alert-warning hidden">
+      <span class="alert-icon">⚠️</span>
+      <span>Đã quá hạn đăng ký. Hạn chót là 15:00 ngày hôm trước.</span>
+    </div>
+
+    <!-- Existing Registration Alert -->
+    <div id="existingAlert" class="alert alert-info hidden">
+      <span class="alert-icon">ℹ️</span>
+      <span>Bạn đã đăng ký ngày này. Bạn có thể chỉnh sửa bên dưới.</span>
+    </div>
+
+    <!-- Menu Display -->
+    <div class="card" id="menuCard" style="display:none;">
+      <div class="card-title">Thực đơn</div>
+      <div class="menu-card">
+        <div class="menu-emoji">🌅</div>
+        <div>
+          <div class="menu-label">Bữa sáng</div>
+          <div class="menu-name" id="menuBreakfast">—</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-emoji">☀️</div>
+        <div>
+          <div class="menu-label">Bữa trưa</div>
+          <div class="menu-name" id="menuLunch">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meal Selection -->
+    <div class="card" id="mealCard" style="display:none;">
+      <div class="card-title">Chọn bữa ăn</div>
+      <div class="meal-options">
+        <label class="meal-check" id="breakfastCheck" onclick="toggleMeal(this)">
+          <input type="checkbox" id="cbBreakfast">
+          <div class="check-box">
+            <svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg>
+          </div>
+          <div class="meal-info">
+            <div class="meal-type">Bữa sáng</div>
+            <div class="meal-menu" id="mealBreakfastName">—</div>
+          </div>
+        </label>
+        <label class="meal-check" id="lunchCheck" onclick="toggleMeal(this)">
+          <input type="checkbox" id="cbLunch">
+          <div class="check-box">
+            <svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 5.5"/></svg>
+          </div>
+          <div class="meal-info">
+            <div class="meal-type">Bữa trưa</div>
+            <div class="meal-menu" id="mealLunchName">—</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Deadline Info -->
+    <div class="deadline-info" id="deadlineInfo" style="display:none;">
+      <span class="dl-icon">⏰</span>
+      <span>Hạn chót: <strong>15:00</strong> ngày hôm trước</span>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn btn-primary mt-16" id="btnRegister" style="display:none;" onclick="submitRegistration()">
+      <span id="btnText">ĐĂNG KÝ</span>
+      <div class="spinner hidden" id="btnSpinner"></div>
+    </button>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Đăng ký</span>
+    </a>
+    <a href="registrations.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Danh sách</span>
+    </a>
+    <a href="statistics.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Thống kê</span>
+    </a>
+    <a href="admin.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Quản trị căn tin - Quản lý thực đơn và cài đặt">
+  <title>Quản Trị Căn Tin</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, #374151, #1F2937);">
+    <h1>⚙️ Quản Trị</h1>
+    <p>Quản lý thực đơn và cài đặt hệ thống</p>
+  </header>
+
+  <!-- Admin Lock Screen -->
+  <main class="container">
+
+    <div id="lockScreen" class="admin-lock">
+      <div class="lock-icon">🔐</div>
+      <h2>Yêu cầu xác thực</h2>
+      <p>Nhập Admin Key để truy cập</p>
+      <div class="form-group">
+        <input type="password" class="form-control" id="adminKeyInput" placeholder="Admin Key">
+      </div>
+      <button class="btn btn-primary btn-sm" id="btnVerify" onclick="verifyAdminKey()" style="max-width:300px;">
+        <span id="btnVerifyText">XÁC NHẬN</span>
+        <div class="spinner hidden" id="btnVerifySpinner"></div>
+      </button>
+    </div>
+
+    <!-- Admin Panel (hidden until auth) -->
+    <div id="adminPanel" class="hidden">
+
+      <!-- Menu Management -->
+      <div class="card">
+        <div class="card-title">Quản lý thực đơn</div>
+        <div class="form-group">
+          <label class="form-label" for="menuDate">Ngày</label>
+          <div class="date-wrap">
+            <input type="date" class="form-control" id="menuDate">
+            <span class="date-display placeholder" id="menuDateDisplay">dd/MM/yyyy</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="menuBreakfastInput">Bữa sáng</label>
+          <input type="text" class="form-control" id="menuBreakfastInput" placeholder="VD: Bún Bò">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="menuLunchInput">Bữa trưa</label>
+          <input type="text" class="form-control" id="menuLunchInput" placeholder="VD: Cá Kho">
+        </div>
+        <button class="btn btn-success" onclick="saveMenu()">
+          <span id="btnMenuText">💾 LƯU THỰC ĐƠN</span>
+          <div class="spinner hidden" id="btnMenuSpinner"></div>
+        </button>
+      </div>
+
+      <!-- Load existing menu -->
+      <div class="card">
+        <div class="card-title">Tải thực đơn hiện tại</div>
+        <div class="form-group">
+          <label class="form-label" for="loadMenuDate">Chọn ngày để tải</label>
+          <div class="date-wrap">
+            <input type="date" class="form-control" id="loadMenuDate">
+            <span class="date-display placeholder" id="loadMenuDateDisplay">dd/MM/yyyy</span>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="loadExistingMenu()">
+          📥 TẢI THỰC ĐƠN
+        </button>
+        <div id="loadedMenuInfo" class="mt-16 hidden">
+          <div class="menu-card">
+            <div class="menu-emoji">🌅</div>
+            <div>
+              <div class="menu-label">Bữa sáng</div>
+              <div class="menu-name" id="loadedBreakfast">—</div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-emoji">☀️</div>
+            <div>
+              <div class="menu-label">Bữa trưa</div>
+              <div class="menu-name" id="loadedLunch">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Override Cutoff -->
+      <div class="card">
+        <div class="card-title">Cài đặt hệ thống</div>
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label">Bỏ qua hạn chót</div>
+            <div class="toggle-desc">Cho phép đăng ký sau 15:00</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="overrideToggle" onchange="toggleOverride()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div id="overrideStatus" class="mt-8" style="font-size:.8rem;color:var(--gray-500);"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Đăng ký</span>
+    </a>
+    <a href="registrations.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Danh sách</span>
+    </a>
+    <a href="statistics.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Thống kê</span>
+    </a>
+    <a href="admin.html" class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

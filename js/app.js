@@ -1,0 +1,339 @@
+// ============================================
+// CANTEEN REGISTRATION — EMPLOYEE PAGE LOGIC
+// ============================================
+
+let employees = [];
+let currentMenu = null;
+let isEditing = false;
+let deadlinePassed = false;
+
+// ---- Helpers ----
+function formatDate(d) {
+    return d.toISOString().split('T')[0];
+}
+
+function formatDateVN(dateStr) {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+function initDateDisplay(inputId, displayId) {
+    const input = document.getElementById(inputId);
+    const display = document.getElementById(displayId);
+    function update() {
+        if (input.value) {
+            display.textContent = formatDateVN(input.value);
+            display.classList.remove('placeholder');
+        } else {
+            display.textContent = 'dd/MM/yyyy';
+            display.classList.add('placeholder');
+        }
+    }
+    input.addEventListener('change', update);
+    input.addEventListener('input', update);
+    update();
+}
+
+function getNextWeekday(from) {
+    const d = new Date(from);
+    const day = d.getDay();
+    if (day === 5) d.setDate(d.getDate() + 3); // Fri → Mon
+    else if (day === 6) d.setDate(d.getDate() + 2); // Sat → Mon
+    else d.setDate(d.getDate() + 1); // next day
+    return d;
+}
+
+function getTodayOrNextWeekday() {
+    const now = new Date();
+    const day = now.getDay();
+    // If weekend, return next Monday
+    if (day === 0) { now.setDate(now.getDate() + 1); return now; }
+    if (day === 6) { now.setDate(now.getDate() + 2); return now; }
+    return now;
+}
+
+function isWeekend(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const day = d.getDay();
+    return day === 0 || day === 6;
+}
+
+function checkDeadline(dateStr) {
+    const now = new Date();
+    const target = new Date(dateStr + 'T00:00:00');
+    const day = target.getDay();
+
+    // Previous working day at 15:00
+    let deadline = new Date(target);
+    if (day === 1) {
+        // Monday → deadline is Friday 15:00
+        deadline.setDate(deadline.getDate() - 3);
+    } else {
+        deadline.setDate(deadline.getDate() - 1);
+    }
+    deadline.setHours(CONFIG.CUTOFF_HOUR, CONFIG.CUTOFF_MINUTE, 0, 0);
+
+    return now > deadline;
+}
+
+function showToast(message, type = '') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast' + (type ? ' toast-' + type : '');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function apiGet(action, params = {}) {
+    const url = new URL(CONFIG.API_BASE_URL);
+    url.searchParams.set('action', action);
+    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+    return fetch(url).then(r => r.json());
+}
+
+function apiPost(action, data) {
+    return fetch(CONFIG.API_BASE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ action, ...data })
+    }).then(r => r.json());
+}
+
+// ---- Toggle Meal ----
+function toggleMeal(el) {
+    const cb = el.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    if (cb.checked) {
+        el.classList.add('checked');
+    } else {
+        el.classList.remove('checked');
+    }
+}
+
+// ---- Init ----
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('dateInput');
+
+    // Set default date
+    const defaultDate = getTodayOrNextWeekday();
+    dateInput.value = formatDate(defaultDate);
+
+    // Event listeners
+    dateInput.addEventListener('change', onDateChange);
+    document.getElementById('employeeSelect').addEventListener('change', onSelectionChange);
+
+    // Init date display
+    initDateDisplay('dateInput', 'dateInputDisplay');
+
+    // Load employees
+    loadEmployees();
+    // Trigger initial load
+    onDateChange();
+});
+
+async function loadEmployees() {
+    try {
+        const data = await apiGet('employees');
+        if (data.status === 'ok') {
+            employees = data.data;
+            const select = document.getElementById('employeeSelect');
+            employees.forEach(emp => {
+                const opt = document.createElement('option');
+                opt.value = emp.name;
+                opt.textContent = `${emp.name} — ${emp.department}`;
+                select.appendChild(opt);
+            });
+        }
+    } catch (e) {
+        console.error('Failed to load employees:', e);
+        // Show offline-friendly message
+        showToast('Không thể tải danh sách nhân viên', 'error');
+    }
+}
+
+function onDateChange() {
+    const dateInput = document.getElementById('dateInput');
+    const dateStr = dateInput.value;
+    const deadlineAlert = document.getElementById('deadlineAlert');
+    const menuCard = document.getElementById('menuCard');
+    const mealCard = document.getElementById('mealCard');
+    const deadlineInfo = document.getElementById('deadlineInfo');
+    const btnRegister = document.getElementById('btnRegister');
+    const existingAlert = document.getElementById('existingAlert');
+
+    // Reset
+    existingAlert.classList.add('hidden');
+    isEditing = false;
+
+    if (!dateStr) {
+        menuCard.style.display = 'none';
+        mealCard.style.display = 'none';
+        deadlineInfo.style.display = 'none';
+        btnRegister.style.display = 'none';
+        deadlineAlert.classList.add('hidden');
+        return;
+    }
+
+    // Weekend check
+    if (isWeekend(dateStr)) {
+        showToast('Không thể đăng ký vào cuối tuần', 'error');
+        deadlineAlert.classList.add('hidden');
+        menuCard.style.display = 'none';
+        mealCard.style.display = 'none';
+        deadlineInfo.style.display = 'none';
+        btnRegister.style.display = 'none';
+        return;
+    }
+
+    // Deadline check
+    deadlinePassed = checkDeadline(dateStr);
+    if (deadlinePassed) {
+        deadlineAlert.classList.remove('hidden');
+        // We still show the menu and allow if override is on (backend will handle)
+    } else {
+        deadlineAlert.classList.add('hidden');
+    }
+
+    // Show UI
+    menuCard.style.display = '';
+    mealCard.style.display = '';
+    deadlineInfo.style.display = '';
+    btnRegister.style.display = '';
+
+    // Load menu
+    loadMenu(dateStr);
+
+    // Check existing registration
+    onSelectionChange();
+}
+
+async function loadMenu(dateStr) {
+    try {
+        const data = await apiGet('menu', { date: dateStr });
+        if (data.status === 'ok' && data.data) {
+            currentMenu = data.data;
+            document.getElementById('menuBreakfast').textContent = data.data.breakfast || '—';
+            document.getElementById('menuLunch').textContent = data.data.lunch || '—';
+            document.getElementById('mealBreakfastName').textContent = data.data.breakfast || '—';
+            document.getElementById('mealLunchName').textContent = data.data.lunch || '—';
+        } else {
+            currentMenu = null;
+            document.getElementById('menuBreakfast').textContent = 'Chưa có thực đơn';
+            document.getElementById('menuLunch').textContent = 'Chưa có thực đơn';
+            document.getElementById('mealBreakfastName').textContent = 'Chưa có thực đơn';
+            document.getElementById('mealLunchName').textContent = 'Chưa có thực đơn';
+        }
+    } catch (e) {
+        console.error('Failed to load menu:', e);
+    }
+}
+
+async function onSelectionChange() {
+    const employee = document.getElementById('employeeSelect').value;
+    const dateStr = document.getElementById('dateInput').value;
+    const existingAlert = document.getElementById('existingAlert');
+    const btnText = document.getElementById('btnText');
+
+    if (!employee || !dateStr) return;
+
+    // Check existing registration
+    try {
+        const data = await apiGet('registrations', { date: dateStr });
+        if (data.status === 'ok') {
+            const existing = data.data.find(r => r.employee === employee);
+            if (existing) {
+                isEditing = true;
+                existingAlert.classList.remove('hidden');
+                btnText.textContent = 'CẬP NHẬT';
+
+                // Set checkboxes
+                const cbBreakfast = document.getElementById('cbBreakfast');
+                const cbLunch = document.getElementById('cbLunch');
+                const breakfastCheck = document.getElementById('breakfastCheck');
+                const lunchCheck = document.getElementById('lunchCheck');
+
+                cbBreakfast.checked = existing.breakfast === 'yes';
+                cbLunch.checked = existing.lunch === 'yes';
+
+                if (cbBreakfast.checked) breakfastCheck.classList.add('checked');
+                else breakfastCheck.classList.remove('checked');
+
+                if (cbLunch.checked) lunchCheck.classList.add('checked');
+                else lunchCheck.classList.remove('checked');
+
+            } else {
+                isEditing = false;
+                existingAlert.classList.add('hidden');
+                btnText.textContent = 'ĐĂNG KÝ';
+
+                // Reset checkboxes
+                document.getElementById('cbBreakfast').checked = false;
+                document.getElementById('cbLunch').checked = false;
+                document.getElementById('breakfastCheck').classList.remove('checked');
+                document.getElementById('lunchCheck').classList.remove('checked');
+            }
+        }
+    } catch (e) {
+        console.error('Failed to check existing registration:', e);
+    }
+}
+
+async function submitRegistration() {
+    const employee = document.getElementById('employeeSelect').value;
+    const dateStr = document.getElementById('dateInput').value;
+    const breakfast = document.getElementById('cbBreakfast').checked;
+    const lunch = document.getElementById('cbLunch').checked;
+
+    if (!employee) {
+        showToast('Vui lòng chọn nhân viên', 'error');
+        return;
+    }
+    if (!dateStr) {
+        showToast('Vui lòng chọn ngày', 'error');
+        return;
+    }
+    if (!breakfast && !lunch) {
+        showToast('Vui lòng chọn ít nhất một bữa ăn', 'error');
+        return;
+    }
+
+    const btn = document.getElementById('btnRegister');
+    const btnText = document.getElementById('btnText');
+    const spinner = document.getElementById('btnSpinner');
+
+    btn.disabled = true;
+    btnText.classList.add('hidden');
+    spinner.classList.remove('hidden');
+
+    // Find department
+    const emp = employees.find(e => e.name === employee);
+    const department = emp ? emp.department : '';
+
+    try {
+        const result = await apiPost('register', {
+            date: dateStr,
+            employee: employee,
+            department: department,
+            breakfast: breakfast ? 'yes' : 'no',
+            lunch: lunch ? 'yes' : 'no'
+        });
+
+        if (result.status === 'ok') {
+            showToast(isEditing ? 'Đã cập nhật thành công!' : 'Đăng ký thành công!', 'success');
+            isEditing = true;
+            btnText.textContent = 'CẬP NHẬT';
+            document.getElementById('existingAlert').classList.remove('hidden');
+        } else {
+            showToast(result.message || 'Đăng ký thất bại', 'error');
+        }
+    } catch (e) {
+        console.error('Registration failed:', e);
+        showToast('Lỗi kết nối. Vui lòng thử lại.', 'error');
+    } finally {
+        btn.disabled = false;
+        btnText.classList.remove('hidden');
+        spinner.classList.add('hidden');
+    }
+}

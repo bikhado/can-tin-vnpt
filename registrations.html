@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Danh sách đăng ký suất ăn căn tin">
+  <title>Danh Sách Đăng Ký</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Header -->
+  <header class="page-header" style="background: linear-gradient(135deg, var(--accent-500), var(--accent-600));">
+    <h1>📋 Danh Sách Đăng Ký</h1>
+    <p>Xem nhân viên đã đăng ký suất ăn</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Date Picker -->
+    <div class="card">
+      <div class="card-title">Chọn ngày</div>
+      <div class="form-group" style="margin-bottom:0;">
+        <div class="date-wrap">
+          <input type="date" class="form-control" id="regDate">
+          <span class="date-display placeholder" id="regDateDisplay">dd/MM/yyyy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stat-grid" id="statGrid" style="display:none;">
+      <div class="stat-card">
+        <div class="stat-value" id="totalBreakfast">0</div>
+        <div class="stat-label">Bữa sáng</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-value" id="totalLunch">0</div>
+        <div class="stat-label">Bữa trưa</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card" id="tableCard" style="display:none;">
+      <div class="card-title">Danh sách</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nhân viên</th>
+              <th>Phòng ban</th>
+              <th>Sáng</th>
+              <th>Trưa</th>
+            </tr>
+          </thead>
+          <tbody id="regTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon">📭</div>
+      <p>Chưa có đăng ký nào cho ngày này</p>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-screen" id="loadingScreen" style="display:none;">
+      <div class="spinner"></div>
+      <span>Đang tải dữ liệu...</span>
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Đăng ký</span>
+    </a>
+    <a href="registrations.html" class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Danh sách</span>
+    </a>
+    <a href="statistics.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Thống kê</span>
+    </a>
+    <a href="admin.html" class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Admin</span>
+    </a>
+  </nav>
+
+  <script src="js/config.js"></script>
+  <script src="js/registrations.js"></script>
+</body>
+</html>
