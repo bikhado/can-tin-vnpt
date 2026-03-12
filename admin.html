@@ -55,9 +55,12 @@
         <div class="card-title">Quản lý thực đơn tuần</div>
         <div class="form-group">
           <label class="form-label" for="menuWeekInput">Chọn tuần</label>
-          <input type="week" class="form-control" id="menuWeekInput" style="height: 44px; margin-bottom: 8px;">
+          <div class="date-wrap">
+            <input type="week" class="form-control" id="menuWeekInput" style="height: 44px; margin-bottom: 8px;">
+            <span id="menuWeekDisplay" class="date-display"></span>
+          </div>
           <button class="btn btn-outline" style="width: 100%; height: 44px;" onclick="loadWeeklyMenuForEdit()">
-            📥 TẢI DỮ LIỆU TUẦN NÀY
+            👁️ XEM THỰC ĐƠN TUẦN NÀY
           </button>
         </div>
         
@@ -133,6 +136,7 @@
           <label class="form-label" for="cloneWeekInput">Chọn tuần <strong>ÁP DỤNG</strong></label>
           <div class="date-wrap">
             <input type="week" class="form-control" id="cloneWeekInput">
+            <span id="cloneWeekDisplay" class="date-display"></span>
           </div>
         </div>
         <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px;">Hệ thống sẽ lấy thực đơn của <strong>tuần trước đó</strong> và chép đè sang tuần bạn chọn ở trên.</p>

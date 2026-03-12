@@ -39,6 +39,30 @@ function initDateDisplay(inputId, displayId) {
     update();
 }
 
+function initWeekDisplay(inputId, displayId) {
+    const input = document.getElementById(inputId);
+    const display = document.getElementById(displayId);
+    if (!input || !display) return;
+
+    function update() {
+        if (input.value) {
+            const parts = input.value.split('-W');
+            if (parts.length === 2) {
+                display.textContent = `Tuần ${parts[1]}, ${parts[0]}`;
+                display.classList.remove('placeholder');
+            } else {
+                display.textContent = input.value;
+            }
+        } else {
+            display.textContent = '-- Chọn tuần --';
+            display.classList.add('placeholder');
+        }
+    }
+    input.addEventListener('change', update);
+    input.addEventListener('input', update);
+    update();
+}
+
 function getNextWeekday(from) {
     const d = new Date(from);
     const day = d.getDay();
@@ -148,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set default week
     weekInput.value = getCurrentWeek();
+    initWeekDisplay('weekInput', 'weekDisplay');
 
     // Event listeners
     weekInput.addEventListener('change', onWeekChange);

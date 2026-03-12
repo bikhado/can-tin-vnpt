@@ -66,6 +66,31 @@ function initDateDisplay(inputId, displayId) {
     });
 }
 
+// ---- Helpers ----
+function initWeekDisplay(inputId, displayId) {
+    const input = document.getElementById(inputId);
+    const display = document.getElementById(displayId);
+    if (!input || !display) return;
+
+    function update() {
+        if (input.value) {
+            const parts = input.value.split('-W');
+            if (parts.length === 2) {
+                display.textContent = `Tuần ${parts[1]}, ${parts[0]}`;
+                display.classList.remove('placeholder');
+            } else {
+                display.textContent = input.value;
+            }
+        } else {
+            display.textContent = '-- Chọn tuần --';
+            display.classList.add('placeholder');
+        }
+    }
+    input.addEventListener('change', update);
+    input.addEventListener('input', update);
+    update();
+}
+
 function getCurrentWeek() {
     const now = new Date();
     const d = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
@@ -114,12 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuWeekInput = document.getElementById('menuWeekInput');
     if (menuWeekInput) {
         menuWeekInput.value = currentWeekInfo;
+        initWeekDisplay('menuWeekInput', 'menuWeekDisplay');
     }
 
     // Set default week for clone input
     const cloneWeekInput = document.getElementById('cloneWeekInput');
     if (cloneWeekInput) {
         cloneWeekInput.value = currentWeekInfo;
+        initWeekDisplay('cloneWeekInput', 'cloneWeekDisplay');
     }
 
     // Try to auto-login: URL param > localStorage

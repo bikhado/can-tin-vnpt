@@ -13,6 +13,30 @@ function formatDateVN(dateStr) {
 }
 
 // ---- Helpers ----
+function initWeekDisplay(inputId, displayId) {
+    const input = document.getElementById(inputId);
+    const display = document.getElementById(displayId);
+    if (!input || !display) return;
+
+    function update() {
+        if (input.value) {
+            const parts = input.value.split('-W');
+            if (parts.length === 2) {
+                display.textContent = `Tuần ${parts[1]}, ${parts[0]}`;
+                display.classList.remove('placeholder');
+            } else {
+                display.textContent = input.value;
+            }
+        } else {
+            display.textContent = '-- Chọn tuần --';
+            display.classList.add('placeholder');
+        }
+    }
+    input.addEventListener('change', update);
+    input.addEventListener('input', update);
+    update();
+}
+
 function showToast(message, type = '') {
     const toast = document.getElementById('toast');
     toast.textContent = message;
@@ -97,6 +121,7 @@ function getPrevWeek(weekStr) {
 document.addEventListener('DOMContentLoaded', () => {
     const weekInput = document.getElementById('weekInput');
     weekInput.value = getCurrentWeek();
+    initWeekDisplay('weekInput', 'weekDisplay');
 
     weekInput.addEventListener('change', loadWeeklyStats);
     loadWeeklyStats();

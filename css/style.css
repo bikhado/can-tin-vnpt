@@ -275,15 +275,18 @@ select.form-control {
   position: relative;
 }
 
-.date-wrap input[type="date"] {
+.date-wrap input[type="date"],
+.date-wrap input[type="week"] {
   color: transparent;
 }
 
-.date-wrap input[type="date"]::-webkit-datetime-edit {
+.date-wrap input[type="date"]::-webkit-datetime-edit,
+.date-wrap input[type="week"]::-webkit-datetime-edit {
   color: transparent;
 }
 
-.date-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+.date-wrap input[type="date"]::-webkit-calendar-picker-indicator,
+.date-wrap input[type="week"]::-webkit-calendar-picker-indicator {
   position: relative;
   z-index: 2;
   opacity: .6;
