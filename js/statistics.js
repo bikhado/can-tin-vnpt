@@ -229,9 +229,9 @@ function renderGrowth(elId, current, prev) {
     const percent = Math.round((Math.abs(diff) / prev) * 100);
 
     if (diff > 0) {
-        el.innerHTML = `<span style="color:#10B981;">▲ Tăng ${percent}% (${diff} suất)</span>`;
+        el.innerHTML = `<span style="color:var(--success);">▲ Tăng ${percent}% (${diff} suất)</span>`;
     } else {
-        el.innerHTML = `<span style="color:#EF4444;">▼ Giảm ${percent}% (${Math.abs(diff)} suất)</span>`;
+        el.innerHTML = `<span style="color:var(--danger);">▼ Giảm ${percent}% (${Math.abs(diff)} suất)</span>`;
     }
 }
 
@@ -250,13 +250,13 @@ function renderChart(breakfastData, lunchData) {
                 {
                     label: 'Bữa Sáng',
                     data: breakfastData,
-                    backgroundColor: '#F59E0B',
+                    backgroundColor: '#0066BC', // VNPT Blue
                     borderRadius: 4
                 },
                 {
                     label: 'Bữa Trưa',
                     data: lunchData,
-                    backgroundColor: '#10B981',
+                    backgroundColor: '#14B8A6', // Accent Teal
                     borderRadius: 4
                 }
             ]

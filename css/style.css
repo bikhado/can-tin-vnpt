@@ -8,17 +8,17 @@
 
 /* ---------- Custom Properties ---------- */
 :root {
-  /* Primary palette — warm orange/amber */
-  --primary-50: #FFF8F0;
-  --primary-100: #FFEDD5;
-  --primary-200: #FED7AA;
-  --primary-300: #FDBA74;
-  --primary-400: #FB923C;
-  --primary-500: #F97316;
-  --primary-600: #EA580C;
-  --primary-700: #C2410C;
+  /* Primary palette — VNPT Blue */
+  --primary-50: #EEF6FF;
+  --primary-100: #DBEAFE;
+  --primary-200: #BFDBFE;
+  --primary-300: #93C5FD;
+  --primary-400: #60A5FA;
+  --primary-500: #0066BC; /* VNPT Main Blue */
+  --primary-600: #1D4ED8;
+  --primary-700: #1E40AF;
 
-  /* Accent — teal */
+  /* Accent — teal (keeping for subtle contrasts) */
   --accent-400: #2DD4BF;
   --accent-500: #14B8A6;
   --accent-600: #0D9488;
@@ -42,7 +42,7 @@
   --info: #3B82F6;
 
   /* Surfaces */
-  --bg-body: #F5F0EB;
+  --bg-body: #F0F4F8;
   --bg-card: #FFFFFF;
   --bg-nav: #FFFFFF;
 
@@ -391,26 +391,26 @@ select.form-control {
 
 /* Breakfast Styling */
 .meal-check.meal-breakfast {
-  background: linear-gradient(to right, #ffffff, #fffdf0);
+  background: linear-gradient(to right, #ffffff, #f0f7ff);
 }
 
 .meal-check.meal-breakfast.checked {
-  border-color: #fab005;
-  background: #fff9db;
+  border-color: var(--primary-400);
+  background: #eef6ff;
 }
 
 .meal-check.meal-breakfast.checked .check-box {
-  background: #fab005;
-  border-color: #fab005;
+  background: var(--primary-500);
+  border-color: var(--primary-500);
 }
 
 .meal-check.meal-breakfast .meal-type {
-  color: #e67700;
+  color: var(--primary-600);
 }
 
 /* Lunch Styling */
 .meal-check.meal-lunch {
-  background: linear-gradient(to right, #ffffff, #f1fdfa);
+  background: linear-gradient(to right, #ffffff, #f2faf9);
 }
 
 .meal-check.meal-lunch.checked {
