@@ -150,6 +150,7 @@ body {
   padding: 16px 20px 24px;
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   position: fixed;
+  /* Solid on mobile */
   top: 0;
   left: 0;
   right: 0;
@@ -199,7 +200,8 @@ body {
 /* ---------- Container ---------- */
 .container {
   padding: 16px;
-  padding-top: calc(16px + 88px);
+  padding-top: 110px;
+  /* Offset for fixed header on mobile */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -1331,6 +1333,13 @@ tbody tr:hover {
 @media (min-width: 768px) {
   .page-header {
     padding: 28px 32px 36px;
+    position: sticky;
+    /* Back to sticky on PC to avoid overlap bugs */
+    border-radius: var(--radius-xl);
+    /* Full radius on PC maybe? No, keep it as is or better */
+    margin: 16px auto;
+    max-width: 600px;
+    top: 16px;
   }
 
   .page-header h1 {
@@ -1339,6 +1348,8 @@ tbody tr:hover {
 
   .container {
     padding: 24px;
+    padding-top: 0;
+    /* Reset for sticky header */
   }
 
   .bottom-nav {
